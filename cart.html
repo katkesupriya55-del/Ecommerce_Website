@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopping Cart - Shop Easy</title>
+
+  <!-- FontAwesome & Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="Ecommerce.css" />
+  <link rel="stylesheet" href="product.css" />
+  <link rel="stylesheet" href="cart.css" />
+</head>
+<body>
+
+  <!-- Shared Navbar -->
+  <nav class="navbar">
+    <div class="first">
+      <a href="Ecommerce.html"><img src="./supriya.png" alt="Shop Easy Logo"></a>
+    </div>
+
+    
+
+    <div class="nav-item">
+      <a href="cart.html" class="icon-link" aria-label="Cart">
+        <i class="fa-solid fa-cart-shopping fa-xl" style="color: rgb(22, 21, 21);"></i>
+        <span id="cart-count" class="badge">0</span>
+      </a>
+      <a href="wishlist.html" class="icon-link" aria-label="Wishlist"> 
+        <i class="fa-solid fa-heart fa-xl" style="color: rgb(22, 21, 21);"></i>
+        <span id="wishlist-count" class="badge">0</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Cart Main Content -->
+  <main class="page-container">
+    <header class="catalog-header">
+      <h1>Your Shopping Cart</h1>
+      <p class="subtitle">Review your selected items before checkout</p>
+    </header>
+
+    <!-- Cart Layout Grid -->
+    <div id="cart-content" class="cart-layout">
+      <!-- List of Items -->
+      <div id="cart-items-list" class="cart-items-container"></div>
+
+      <!-- Order Summary Sidebar -->
+      <aside class="cart-summary-card">
+        <h2>Order Summary</h2>
+        
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="summary-subtotal">$0.00</span>
+        </div>
+        
+        <div class="summary-row">
+          <span>Estimated Shipping</span>
+          <span id="summary-shipping">FREE</span>
+        </div>
+
+        <div class="summary-row">
+          <span>Estimated Tax (5%)</span>
+          <span id="summary-tax">$0.00</span>
+        </div>
+
+        <hr class="summary-divider" />
+
+        <div class="summary-row total-row">
+          <span>Total</span>
+          <span id="summary-total">$0.00</span>
+        </div>
+
+        <!-- <button class="checkout-btn" onclick="checkout()">
+          Proceed to Checkout <i class="fa-solid fa-arrow-right"></i>
+        </button> -->
+
+
+      <button onclick="goToCheckout()" class="checkout-btn">
+        Proceed to Checkout &rarr;
+      </button>
+
+      <script>
+        function goToCheckout() {
+          window.location.href = 'checkout.html';
+        }
+      </script>
+
+
+
+        <!-- <a href="http://127.0.0.1:5501/checkout.html" class="checkout-btn">
+          <i class="fa-solid fa-arrow-right"></i> Proceed to Checkout
+        </a> -->
+        <a href="product.html" class="continue-shopping">
+          <i class="fa-solid fa-arrow-left"></i> Continue Shopping
+        </a>
+      </aside>
+    </div>
+
+    <!-- Empty State View -->
+    <div id="empty-cart" class="empty-state" style="display: none;">
+      <i class="fa-solid fa-cart-flatbed empty-icon"></i>
+      <h2>Your cart is empty</h2>
+      <p>Looks like you haven't added anything to your cart yet.</p>
+      <a href="product.html" class="btn-explore">Explore Products</a>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="Ecommerce.js"></script>
+  <script src="cart.js"></script>
+</body>
+</html>

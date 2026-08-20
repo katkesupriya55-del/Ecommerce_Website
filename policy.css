@@ -1,0 +1,100 @@
+/* Base Styling & Typography */
+.privacy-hero,
+.privacy-section {
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Hero Section */
+.privacy-hero {
+  background-color: rgb(247, 183, 204);
+  border-bottom: 2px solid #ff5588;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.hero-content h1 {
+  font-size: 36px;
+  color: rgb(22, 21, 21);
+  margin: 0 0 8px 0;
+}
+
+.hero-content p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Main Container */
+.privacy-section {
+  padding: 50px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.privacy-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Policy Card Styles */
+.privacy-card {
+  background-color: #ffffff;
+  border: 2px solid #f3cbcf;
+  border-radius: 16px;
+  padding: 30px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.privacy-card:hover {
+  border-color: #f7586d;
+  box-shadow: 0 6px 18px rgba(226, 141, 153, 0.1);
+}
+
+.privacy-card h2 {
+  font-size: 20px;
+  color: rgb(22, 21, 21);
+  margin: 0 0 12px 0;
+}
+
+.privacy-card p {
+  color: #555;
+  line-height: 1.7;
+  font-size: 15px;
+  margin: 0 0 12px 0;
+}
+
+.privacy-card p:last-child {
+  margin-bottom: 0;
+}
+
+.privacy-card ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #555;
+}
+
+.privacy-card li {
+  line-height: 1.6;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.privacy-card li:last-child {
+  margin-bottom: 0;
+}
+
+.privacy-card li strong {
+  color: rgb(22, 21, 21);
+}
+
+/* Contact Card Accent */
+.contact-box {
+  background-color: lavenderblush;
+}

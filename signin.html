@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In - Shop Easy</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Ecommerce.css">
+  <link rel="stylesheet" href="signin.css">
+</head>
+<body>
+
+  
+
+  <main class="auth-wrapper">
+    <div class="auth-card">
+      <div class="auth-header">
+        <h2>Welcome Back</h2>
+        <p>Sign in to continue shopping on <strong>Shop Easy</strong></p>
+      </div>
+
+      <form id="signinForm" novalidate>
+        <div class="form-group">
+          <label for="loginEmail">Email Address</label>
+          <div class="input-icon">
+            <i class="fa-solid fa-envelope"></i>
+            <input type="email" id="loginEmail" placeholder="example@domain.com">
+          </div>
+          <small class="error-msg" id="loginEmailError"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <div class="input-icon">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="loginPassword" placeholder="Enter password">
+          </div>
+          <small class="error-msg" id="loginPasswordError"></small>
+        </div>
+       
+        
+        
+        <button type="submit" class="submit-btn">
+          <span>Sign In</span>
+          <i class="fa-solid fa-right-to-bracket"></i>
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        <p>Don't have an account? <a href="register.html">Register Now</a></p>
+      </div>
+    </div>
+  </main>
+
+  <script src="Ecommerce.js"></script>
+  <script src="signin.js"></script>
+</body>
+</html>

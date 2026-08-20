@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"><script src="Ecommerce.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/png" href="1favicon.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css"
+        integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="Ecommerce.css">
+    <script src="formal.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@400..700&family=Playwrite+DE+SAS+Guides&family=Playwrite+NO:wght@100..400&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Ecommerce Website</title>
+</head>
+<body>
+
+    <nav class="navbar">
+
+        <div class="first">
+            <img src="./ShopEasy...png" alt="">
+        </div>
+
+        <div class="second">
+        <form class="search-box" action="http://127.0.0.1:5501/product.html" method="GET">
+
+        <input
+            type="text"
+            class="search-input"
+            name="q"
+            placeholder="Search for Accessories, Dresses, Bags..."
+            autocomplete="off"
+            required
+        />
+
+        <button type="submit" class="search-btn" aria-label="Search">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </button>
+        </form>
+
+        </div>
+
+       
+        <div class="nav-item">
+        <a href="http://127.0.0.1:5501/cart.html" class="icon-link">
+            <i class="fa-solid fa-cart-shopping fa-2xl" style="color: rgb(22, 21, 21);"></i>
+            <span id="cart-count" class="badge">0</span>
+        </a>
+        <a href="http://127.0.0.1:5501/wishlist.html" class="icon-link"> 
+            <i class="fa-solid fa-heart fa-2xl" style="color: rgb(22, 21, 21);"></i>
+            <span id="wishlist-count" class="badge">0</span>
+        </a>
+    </div>
+
+    <div>
+   
+    <div class="user-actions">
+ 
+    </div>
+    </div>
+
+    </nav>
+
+    <section class="sectionFirst">
+        <div class="container content">
+            <div class="section-text">
+                <p class="sec-heading">New Arrivals</p><br><br><br>
+                <h1>Elevate Your Style</h1>
+                <br>
+                <p class="sec-adescription" style="color: black ; font-weight: 600;">
+                    Welcome to Shop easy, Discover the latest women's clothing <br>
+                    and accessories to look and feel your best.
+                </p>
+                <br><br><br>
+                <a href="http://127.0.0.1:5501/product.html" class="btn">Explore Our Products</a><br><br><br>
+                
+            </div>
+            
+            <!-- PINTEREST VIDEO ADDED HERE -->
+        <div class="hero-video-wrapper">
+            <div class="video-card">
+                <video autoplay loop muted playsinline class="shopping-video">
+                    <source src="./pinterest.mp4" type="video/mp4" />
+                    Your browser does not support video playback.
+                </video>
+                <div class="video-overlay-badge">
+                    <i class="fa-solid fa-bag-shopping"></i> Trending Collection
+                </div>
+            </div>
+        </div>        
+        </div> 
+               
+    </section>
+
+    <div class="custom-shape-divider-bottom-1786600469">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path
+                d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
+                opacity=".25" class="shape-fill"></path>
+            <path
+                d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
+                opacity=".5" class="shape-fill"></path>
+            <path
+                d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
+                class="shape-fill"></path>
+        </svg>
+    </div>
+    <br>
+        <section class="featured-section">
+  <div class="filter-header">
+    <h2>Featured Products</h2>
+    <p>Click any product to select options & customize your order before adding to cart</p>
+  </div>
+
+  <!-- Horizontal Pill Filters -->
+  <div class="filter-pills">
+  <a href="http://127.0.0.1:5501/product.html" class="pill-btn">All</a>
+  <a href="http://127.0.0.1:5501/formal.html" class="pill-btn active">Formal Wears</a>
+  <a href="http://127.0.0.1:5501/jwel.html" class="pill-btn">Jewelry</a>
+  <a href="http://127.0.0.1:5501/footwear.html" class="pill-btn">Footwear</a>
+</div>
+</section>
+    <br>
+    
+
+    <div class="p-section">
+        <div class="p-container">
+
+
+            <div class="card">
+                <div class="text">
+                    <span class="subtitle">NEW YEAR SALE</span>
+                    <h3 class="title">Get And Extra 50% Off on Formal Wears</h3>
+                    <a href="http://127.0.0.1:5501/formal.html" class="link">SHOW NOW</a>
+                </div>
+                <div class="image-wrapper">
+                    <div class="bg-shape"></div>
+                    <img src="./formal.png" alt="" class="promo-image" />
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="text">
+                    <span class="subtitle">NEW YEAR SALE</span>
+                    <h3 class="title">40% Discount On Jwellery</h3>
+                    <a href="http://127.0.0.1:5501/jwel.html" class="link">SHOW NOW</a>
+                </div>
+                <div class="image-wrapper">
+                    <div class="bg-shape"></div>
+                    <img src="./jwellwey.png" alt="" class="promo-image" />
+                </div>
+            </div>
+
+
+            <div class="card">
+                <div class="text">
+                    <span class="subtitle">NEW YEAR SALE</span>
+                    <h3 class="title">Get And Extra 50% Off Foot Wears</h3>
+                    <a href="http://127.0.0.1:5501/footwear.html" class="link">SHOW NOW</a>
+                </div>
+                <div class="image-wrapper">
+                    <div class="bg-shape"></div>
+                    <img src="./foot.png" alt="" class="promo-image" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+ <br><br><br>
+ <section class="marquee-section">
+  <div class="marquee-track">
+    <!-- First Set of Images -->
+    <div class="marquee-card"><img src="./f4.jpg" alt="Formal Wear"></div>
+    <div class="marquee-card"><img src="./c2.jpg" alt="Jewelry"></div>
+    <div class="marquee-card"><img src="./j16.jpg" alt="Footwear"></div>
+    <div class="marquee-card"><img src="./f20.jpg" alt="Brand Logo"></div>
+    <div class="marquee-card"><img src="./c15.jpg" alt="Formal Wear"></div>
+    <div class="marquee-card"><img src="./f12.jpg" alt="Jewelry"></div>
+
+    <!-- Exact Duplicate Set for Seamless Infinite Loop -->
+    <div class="marquee-card"><img src="./f31.jpg" alt="Formal Wear"></div>
+    <div class="marquee-card"><img src="./c20.jpg" alt="Jewelry"></div>
+    <div class="marquee-card"><img src="./j2.jpg" alt="Footwear"></div>
+    <div class="marquee-card"><img src="./f2.jpg" alt="Brand Logo"></div>
+    <div class="marquee-card"><img src="./c10.jpg" alt="Formal Wear"></div>
+    <div class="marquee-card"><img src="./n1.jpg" alt="Formal Wear"></div>
+    <div class="marquee-card"><img src="./n2.jpg" alt="Formal Wear"></div>
+    <div class="marquee-card"><img src="./n4.jpg" alt="Formal Wear"></div>
+   
+  </div>
+</section>
+    <br><br><br>
+
+    <section class="sec1">
+        <div class="cont1">
+
+            <div class="card1">
+                <div class="icon">
+                    <i class="fa-solid fa-truck fa-xl" style="color: rgb(22, 21, 21);"></i>                    
+                </div>
+                <div class="text1">
+                    <h3>World Wide Shipping</h3>
+                    <h4>Order Above $100 </h4>
+                </div>
+            </div>
+
+            <div class="card1">
+                <div class="icon">
+                    <i class="fa-solid fa-arrows-rotate fa-xl" style="color: rgb(22, 21, 21);"></i>
+                </div>
+                <div class="text1">
+                    <h3>Easy 30 Day Returns</h3>
+                    <h4>Back Return In 7 days</h4>
+                </div>
+            </div>
+
+            <div class="card1">
+                <div class="icon">
+                    <i class="fa-solid fa-hand-holding-dollar fa-xl" style="color: rgb(22, 21, 21);"></i>
+                </div>
+                <div class="text1">
+                    <h3>Money Back Guarantee</h3>
+                    <h4>Money Back In 30 Days </h4>
+                </div>
+            </div>
+
+            <div class="card1">
+                 <div class="icon">
+                    <i class="fa-solid fa-headset fa-xl" style="color: rgb(22, 21, 21);"></i>
+                </div>
+                <div class="text1">
+                    <h3>Easy Online Support</h3>
+                    <h4>24/7 Any Time Support </h4>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+    
+
+            <br><br><br>
+    
+    <footer class="Footer">
+        
+
+        <div class="head"> 
+                <img style="height: 150px;" src="./Ecommercel logo.png" alt="">
+                <h5 > Shop easy is your one-stop destination <br> for the latest women's clothing and <br> accessories. <br> Shop your style, your way. </h5>
+        </div>
+
+        <div class="contain1">
+            <br><br><br>
+            <h2 style="color: black;"> SHOP </h2>
+            
+                <a href="http://127.0.0.1:5501/product.html">Bages</a><br>
+              
+                <a href="http://127.0.0.1:5501/footwear.html">Footwears</a><br>
+                <a href="http://127.0.0.1:5501/formal.html">Formal Wears</a><br>
+                <a href="http://127.0.0.1:5501/jwel.html">Accessories</a> <br>               
+                <a href="http://127.0.0.1:5501/product.html">Watches</a>
+
+        </div>
+
+        <div class="contain1">
+            <br><br><br>
+
+            <h2 style="color: black;"> ABOUT </h2>
+            
+                <a href="http://127.0.0.1:5501/about.html">About Us</a><br>
+                <a href="">Privacy Policy</a>
+                 
+        </div>
+        
+        <div class="contain1">
+            <br><br><br>
+
+            <h2 style="color: black;"> HELP </h2>
+            
+                <a href="http://127.0.0.1:5501/contact.html">Contact US</a>
+                                 
+        </div>
+    </footer>
+
+    
+    <div id="final">
+        <h3>@ 2026 Shop easy ALL Rights Reserved.</h3>
+
+    </div>
+
+</body>
+
+</html>

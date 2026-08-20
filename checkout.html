@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout - Shop Easy</title>
+
+  <!-- FontAwesome & Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="Ecommerce.css" />
+  <link rel="stylesheet" href="product.css" />
+  <link rel="stylesheet" href="checkout.css" />
+</head>
+<body>
+
+  <!-- Shared Navbar -->
+  <nav class="navbar">
+    <div class="first">
+      <a href="Ecommerce.html"><img src="./supriya.png" alt="Shop Easy Logo"></a>
+    </div>
+
+    <div class="nav-item">
+      <a href="cart.html" class="icon-link" aria-label="Cart">
+        <i class="fa-solid fa-cart-shopping fa-xl" style="color: rgb(22, 21, 21);"></i>
+        <span id="cart-count" class="badge">0</span>
+      </a>
+      <a href="wishlist.html" class="icon-link" aria-label="Wishlist"> 
+        <i class="fa-solid fa-heart fa-xl" style="color: rgb(22, 21, 21);"></i>
+        <span id="wishlist-count" class="badge">0</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Checkout Main Content -->
+  <main class="page-container">
+    <header class="catalog-header">
+      <h1>Checkout</h1>
+      <p class="subtitle">Please enter your contact and shipping details to complete your order</p>
+    </header>
+
+    <div class="checkout-layout">
+      <!-- Customer Information Form -->
+      <section class="checkout-form-section">
+        <form id="checkout-form" onsubmit="handlePlaceOrder(event)">
+          
+          <!-- Contact Details -->
+          <div class="form-block">
+            <h2><i class="fa-solid fa-user"></i> Contact Information</h2>
+            
+            <div class="form-group">
+              <label for="full-name">Full Name *</label>
+              <input type="text" id="full-name" placeholder="John Doe" required />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="mobile">Mobile Number *</label>
+                <input type="tel" id="mobile" placeholder="10-digit mobile number" pattern="[0-9]{10}" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" placeholder="example@domain.com" required />
+              </div>
+            </div>
+          </div>
+
+          <!-- Shipping Address Details -->
+          <div class="form-block">
+            <h2><i class="fa-solid fa-truck-fast"></i> Shipping Address</h2>
+
+            <div class="form-group">
+              <label for="address">Street Address / House No. *</label>
+              <textarea id="address" rows="3" placeholder="Apartment, suite, unit, street address" required></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="city">City *</label>
+                <input type="text" id="city" placeholder="City" required />
+              </div>
+              <div class="form-group">
+                <label for="state">State *</label>
+                <input type="text" id="state" placeholder="State" required />
+              </div>
+              <div class="form-group">
+                <label for="pincode">PIN Code / ZIP *</label>
+                <input type="text" id="pincode" placeholder="6-digit PIN code" pattern="[0-9]{6}" required />
+              </div>
+            </div>
+          </div>
+
+          <a href="http://127.0.0.1:5501/order.html" type="submit" class="submit-order-btn">
+            Place Order <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </form>
+      </section>
+
+      <!-- Order Summary Card -->
+      <!-- Enhanced Order Summary Sidebar -->
+<aside class="checkout-summary-card">
+  <div class="summary-header">
+    <h2>Order Summary</h2>
+    <span id="summary-item-count" class="item-count-badge">0 Items</span>
+  </div>
+
+  <!-- Product List Preview -->
+  <div id="checkout-items-preview" class="summary-items-list"></div>
+
+  <!-- Coupon / Promo Code Input -->
+  <div class="promo-code-container">
+    <!-- <div class="promo-input-group">
+      <i class="fa-solid fa-ticket promo-icon"></i>
+      <input type="text" id="promo-code-input" placeholder="Promo code (e.g. SAVE10)" />
+      <button type="button" class="btn-apply-promo" onclick="applyPromoCode()">Apply</button>
+    </div> -->
+    <div id="promo-message" class="promo-message"></div>
+  </div>
+
+  <!-- Pricing Breakdown -->
+  <div class="price-breakdown">
+    <div class="summary-row">
+      <span>Subtotal</span>
+      <span id="checkout-subtotal" class="row-value">$0.00</span>
+    </div>
+
+    <div id="discount-row" class="summary-row discount-row" style="display: none;">
+      <span>Discount (10%)</span>
+      <span id="checkout-discount" class="discount-value">-$0.00</span>
+    </div>
+
+    <div class="summary-row">
+      <span>Shipping</span>
+      <span class="badge-free">FREE</span>
+    </div>
+
+    <div class="summary-row">
+      <span>Estimated Tax (5%)</span>
+      <span id="checkout-tax" class="row-value">$0.00</span>
+    </div>
+
+    <hr class="summary-divider" />
+
+    <div class="summary-row total-row">
+      <div>
+        <span class="total-label">Total Amount</span>
+        <span class="total-subtext">Includes taxes</span>
+      </div>
+      <span id="checkout-total" class="total-price">$0.00</span>
+    </div>
+  </div>
+
+  <!-- Trust Features -->
+  <div class="checkout-trust-features">
+    <div class="trust-item">
+      <i class="fa-solid fa-shield-halved"></i>
+      <span>Secure 256-bit Encryption</span>
+    </div>
+    <div class="trust-item">
+      <i class="fa-solid fa-rotate-left"></i>
+      <span>30-Day Money-Back Guarantee</span>
+    </div>
+  </div>
+
+  <a href="cart.html" class="back-to-cart">
+    <i class="fa-solid fa-arrow-left"></i> Edit Cart Items
+  </a>
+</aside>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="Ecommerce.js"></script>
+  <script src="checkout.js"></script>
+</body>
+</html>
