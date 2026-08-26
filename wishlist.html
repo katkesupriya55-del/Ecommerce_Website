@@ -19,23 +19,33 @@
 </head>
 <body>
 
-  <!-- Shared Navbar -->
-  <nav class="navbar">
-    <div class="first">
-      <a href="Ecommerce.html"><img src="./supriya.png" alt="Shop Easy Logo"></a>
-    </div>
+  <!-- FontAwesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <div class="nav-item">
-      <a href="cart.html" class="icon-link" aria-label="Cart">
-        <i class="fa-solid fa-cart-shopping fa-xl" style="color: rgb(22, 21, 21);"></i>
-        <span id="cart-count" class="badge">0</span>
-      </a>
-      <a href="wishlist.html" class="icon-link" aria-label="Wishlist"> 
-        <i class="fa-solid fa-heart fa-xl" style="color: rgb(22, 21, 21);"></i>
-        <span id="wishlist-count" class="badge">0</span>
-      </a>
-    </div>
-  </nav>
+<header class="navbar">
+  
+  <a href="http://127.0.0.1:5501/Ecommerce.html" class="brand-logo">
+    <img src="./ShopEasy...png" alt="ShopEasy Logo">
+  </a>
+
+ 
+  <div class="nav-actions">
+    <a href="./wishlist.html" class="nav-pill" aria-label="Wishlist">
+      <i class="fa-regular fa-heart"></i>
+      <span class="pill-label">Wishlist</span>
+      <span class="count-badge">3</span>
+    </a>
+
+    <a href="./cart.html" class="nav-pill active-pill" aria-label="Cart">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <span class="pill-label">Cart</span>
+      <span class="count-badge highlight">6</span>
+    </a>
+
+  
+  </div>
+</header>
+
 
   <!-- Wishlist Main Content -->
   <main class="page-container">
@@ -52,9 +62,16 @@
       <i class="fa-regular fa-heart empty-icon"></i>
       <h2>Your wishlist is empty</h2>
       <p>Explore our catalog and save your favorite products!</p>
-      <a href="product.html" class="btn-explore">Explore Our Products</a>
+      <a href="product.html" class="btn-explore">Back</a>
     </div>
   </main>
+
+<div class="last" >
+      <a href="http://127.0.0.1:5501/Ecommerce.html" class="back-btn">
+  <i class="fa-solid fa-arrow-left"></i> Back
+</a>
+
+</div>
 
   <!-- Scripts: Keep only global navbar logic and wishlist rendering -->
   <script src="Ecommerce.js"></script>

@@ -104,6 +104,29 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+const userIcon = document.getElementById('userIcon');
+const logoutModal = document.getElementById('logoutModal');
+const modalMessage = document.getElementById('modalMessage');
+const okBtn = document.getElementById('okBtn');
+const cancelBtn = document.getElementById('cancelBtn');
+
+// Open modal on user icon click
+userIcon.addEventListener('click', () => {
+  modalMessage.textContent = "Are you sure you want to log out?";
+  logoutModal.style.display = "flex";
+});
+
+// Click OK -> Redirect to msg.html
+okBtn.addEventListener('click', () => {
+  window.location.href = 'http://127.0.0.1:5501/msg.html';
+});
+
+// Click Cancel -> Re-confirm message and keep modal open
+cancelBtn.addEventListener('click', () => {
+  modalMessage.textContent = "Are you sure you want to log out?";
+  logoutModal.style.display = "flex";
+});
+
 // Helper function to update Navbar Badges
 function updateNavbarCounts() {
   const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];

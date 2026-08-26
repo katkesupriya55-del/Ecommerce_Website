@@ -12,25 +12,153 @@
       padding: 40px 20px;
     }
 
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-    }
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&display=swap');
 
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 36px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
 
-    header h1 {
-      font-size: 2.2rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      color: #111;
-      margin-bottom: 8px;
-    }
+/* Logo */
+.brand-logo img {
+  height: 60px;
+  width: auto;
+  display: block;
+}
 
-    
+/* Central Title */
+.collection-title {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #0f172a;
+  
+}
+
+/* Action Group */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Pill Buttons */
+.nav-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 30px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-pill:hover {
+  background-color: #0f172a;
+  border-color: #0f172a;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+
+/* Modal Popup Styling */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-box {
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 300px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.btn {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-ok {
+  background-color: #0d233a;
+  color: white;
+}
+
+.btn-cancel {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+
+.nav-pill.icon-only {
+  padding: 8px 12px;
+}
+
+/* Text Label inside Pills */
+.pill-label {
+  display: inline-block;
+}
+
+/* Inline Count Badges */
+.count-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e2e8f0;
+  color: #0f172a;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 12px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.count-badge.highlight {
+ background-color: rgba(255, 255, 255, 0.2);
+   background-color: #e2e8f0;
+
+}
+
+/* Hover States for Badges */
+.nav-pill:hover .count-badge {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.nav-pill:hover .count-badge.highlight {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+} 
     
     .card-grid {
       display: grid;
@@ -217,5 +345,165 @@
 @media (max-width: 600px) {
   .card-grid {
     grid-template-columns: repeat(1, 1fr); /* 1 card per row on mobile */
+  }
+}
+
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Header Styling */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 30px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.header-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #0d233a;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #ffffff;
+  border: 1px solid #d0d5dd;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.user-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid #d0d5dd;
+  background-color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge {
+  background-color: #e2e8f0;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+/* Modal Popup Styling */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-box {
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 300px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.btn {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-ok {
+  background-color: #0d233a;
+  color: white;
+}
+
+.btn-cancel {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+    padding: 10px 16px;
+    row-gap: 12px;
+  }
+
+  /* Scale down logo */
+  .brand-logo img {
+    height: 42px;
+  }
+
+  /* Move title to its own row below logo and actions */
+  .collection-title {
+    order: 3;
+    width: 100%;
+    text-align: center;
+    font-size: 1.125rem;
+    letter-spacing: 0.4px;
+  }
+
+  /* Compact button actions */
+  .nav-actions {
+    gap: 8px;
+  }
+
+  .nav-pill {
+    padding: 6px 10px;
+  }
+
+  /* Hide pill text on mobile (keep icons + badges) */
+  .pill-label {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-logo img {
+    height: 36px;
+  }
+
+  .collection-title {
+    font-size: 1rem;
+  }
+
+  .count-badge {
+    font-size: 0.7rem;
+    padding: 1px 5px;
   }
 }

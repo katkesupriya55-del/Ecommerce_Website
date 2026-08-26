@@ -136,3 +136,233 @@
     padding: 25px 20px;
   }
 }
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&display=swap');
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 36px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Logo */
+.brand-logo img {
+  height: 60px;
+  width: auto;
+  display: block;
+}
+
+/* Central Title */
+.collection-title {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #0f172a;
+  
+}
+
+/* Action Group */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Pill Buttons */
+.nav-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 30px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-pill:hover {
+  background-color: #0f172a;
+  border-color: #0f172a;
+  color: #ffffff;
+  transform: translateY(-1px);
+}.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 36px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Logo */
+.brand-logo img {
+  height: 60px;
+  width: auto;
+  display: block;
+}
+
+/* Central Title */
+.collection-title {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #0f172a;
+  
+}
+
+/* Action Group */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Pill Buttons */
+.nav-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 30px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-pill:hover {
+  background-color: #0f172a;
+  border-color: #0f172a;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+
+/* Modal Popup Styling */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-box {
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 300px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.btn {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-ok {
+  background-color: #0d233a;
+  color: white;
+}
+
+.btn-cancel {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+
+.nav-pill.icon-only {
+  padding: 8px 12px;
+}
+
+/* Text Label inside Pills */
+.pill-label {
+  display: inline-block;
+}
+
+/* Inline Count Badges */
+.count-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e2e8f0;
+  color: #0f172a;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 12px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.count-badge.highlight {
+ background-color: rgba(255, 255, 255, 0.2);
+   background-color: #e2e8f0;
+
+}
+
+/* Hover States for Badges */
+.nav-pill:hover .count-badge {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.nav-pill:hover .count-badge.highlight {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+} 
+.last a{
+  width: 100%;
+  background-color: #0f172a;
+  color: #ffffff;
+  border: none;
+  padding: 13px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+  text-decoration: none;
+  transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+.last:hover {
+  background-color: #d62866;
+  transform: translateY(-2px);
+}
+

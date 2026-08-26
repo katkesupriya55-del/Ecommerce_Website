@@ -6,29 +6,37 @@
 
 /* Hero Section */
 .privacy-hero {
-  background-color: rgb(247, 183, 204);
-  border-bottom: 2px solid #ff5588;
+  background-color: rgb(175, 172, 173);
+  border-bottom: 2px solid black;
   padding: 60px 20px;
-  text-align: center;
 }
 
 .hero-content {
   max-width: 700px;
   margin: 0 auto;
+  position: relative; /* Context for absolute positioning */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content .privacy-icon {
+  position: absolute; /* Lock icon to the left */
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  text-decoration: none;
+  line-height: 1;
 }
 
 .hero-content h1 {
   font-size: 36px;
   color: rgb(22, 21, 21);
-  margin: 0 0 8px 0;
+  margin: 0;
+  text-align: center;
 }
 
-.hero-content p {
-  font-size: 14px;
-  color: #666;
-  margin: 0;
-  font-weight: 500;
-}
+
 
 /* Main Container */
 .privacy-section {
@@ -45,15 +53,17 @@
 
 /* Policy Card Styles */
 .privacy-card {
-  background-color: #ffffff;
-  border: 2px solid #f3cbcf;
+  background-color: white;
+  border: 1px solid #0a0a0a;
   border-radius: 16px;
   padding: 30px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .privacy-card:hover {
-  border-color: #f7586d;
+  
+  border: 2px solid #0a0a0a;
+
   box-shadow: 0 6px 18px rgba(226, 141, 153, 0.1);
 }
 
@@ -96,5 +106,5 @@
 
 /* Contact Card Accent */
 .contact-box {
-  background-color: lavenderblush;
+  background-color: white;
 }

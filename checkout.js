@@ -173,6 +173,54 @@ function applyPromoCode() {
   renderCheckoutSummary();
 }
 
+// Function to generate Order ID and save full order details
+function finalizeOrder(paymentType = 'Online Payment', transactionId = 'TXN-' + Date.now()) {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  if (cart.length === 0) return;
+
+  // 1. Auto-generate Unique Order ID
+  const orderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
+  
+  // 2. Format Order Date
+  const orderDate = new Date().toLocaleString('en-US', {
+    dateStyle: 'medium',
+    timeStyle: 'short'
+  });
+
+  // 3. Calculate Total Price
+  const totalAmount = cart.reduce((sum, item) => {
+    const numericPrice = parseFloat(String(item.price).replace(/[^0-9.]/g, '')) || 0;
+    return sum + (numericPrice * (item.quantity || 1));
+  }, 0);
+
+  // 4. Construct Full Order Object
+  const newOrder = {
+    id: orderId,
+    date: orderDate,
+    items: cart,
+    totalPrice: totalAmount,
+    paymentMethod: paymentType, // 'Online Payment' or 'Cash on Delivery'
+    paymentStatus: paymentType === 'Online Payment' ? 'Paid' : 'Pending (COD)',
+    transactionId: paymentType === 'Online Payment' ? transactionId : 'N/A'
+  };
+
+  // 5. Store in LocalStorage history
+  let orders = JSON.parse(localStorage.getItem('orders')) || [];
+  orders.unshift(newOrder); // Add to beginning
+  localStorage.setItem('orders', JSON.stringify(orders));
+
+  // 6. Clear current shopping cart
+  localStorage.removeItem('cart');
+}
+
+// Redirect to orders page when clicking "View Orders" button
+document.getElementById('viewOrdersBtn').addEventListener('click', () => {
+  window.location.href = 'orders.html';
+});
+
+
+
+
 // Redirect to checkout page when clicking 'Proceed to Checkout'
 function checkout() {
   const cart = JSON.parse(localStorage.getItem('cart')) || [];

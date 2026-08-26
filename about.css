@@ -15,8 +15,8 @@ body {
 
 /* Hero Section */
 .about-hero {
-  background-color: rgb(253, 196, 214);
-  border-bottom: 2px solid #f37d89;
+  background-color: rgb(192, 186, 192);
+  border-bottom: 2px solid #080808;
   padding: 60px 20px;
   text-align: center;
 }
@@ -26,10 +26,27 @@ body {
   margin: 0 auto;
 }
 
+/* Header container that keeps the icon left-aligned and title centered */
+.hero-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.privacy-icon {
+  position: absolute;
+  left: 0;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
 .hero-content h1 {
   font-size: clamp(1.85rem, 4vw + 1rem, 2.375rem); /* Smooth scaling: 30px to 38px */
   color: rgb(22, 21, 21);
-  margin: 0 0 12px 0;
+  margin: 0;
   line-height: 1.2;
 }
 
@@ -39,7 +56,6 @@ body {
   line-height: 1.6;
   margin: 0;
 }
-
 /* Container */
 .about-section {
   padding: 60px 20px;
@@ -58,15 +74,17 @@ body {
 
 .badge {
   display: inline-block;
-  background-color: rgb(253, 196, 214);
-  color: black;
-  border: 1px solid #f39ca4;
+  background-color: rgb(14, 13, 13);
+  color: white;
+  border: 1px solid #f3e8e9;
   font-weight: 600;
   padding: 4px 14px;
   border-radius: 20px;
   font-size: 13px;
   margin-bottom: 12px;
 }
+
+
 
 .story-text h2 {
   font-size: clamp(1.5rem, 3vw + 0.8rem, 1.875rem); /* Smooth scaling: 24px to 30px */
@@ -83,8 +101,8 @@ body {
 }
 
 .story-card {
-  background-color: rgb(253, 196, 214);
-  border: 2px solid #f77f8b;
+  background-color: rgb(224, 217, 219);
+  border: 2px solid #0e0102;
   border-radius: 20px;
   padding: 32px;
 }
@@ -125,7 +143,7 @@ body {
 
 .stat-card {
   background: #ffffff;
-  border: 2px solid #f3cbcf;
+  border: 2px solid #0a0a0a;
   border-radius: 16px;
   padding: 28px 16px;
   text-align: center;
@@ -133,8 +151,8 @@ body {
 }
 
 .stat-card:hover {
-  transform: translateY(-6px);
-  border-color: #e28d99;
+  transform: translateY(-16px);
+  border-color: #0a0a0a;
   box-shadow: 0 10px 24px rgba(226, 141, 153, 0.15);
 }
 

@@ -87,6 +87,7 @@ function syncWishlistButtons() {
   });
 }
 
+
 // Extract product data regardless of card layout differences
 function extractProductData(card) {
   const titleElem = card.querySelector('.product-title, .card-title, .title, h3, h2, h4');
@@ -117,7 +118,7 @@ function updateNavbar() {
     // Logged In: Show Profile link on the left side of Logout button
     const firstName = currentUser.name ? currentUser.name.split(' ')[0] : 'Profile';
     userActionsContainer.innerHTML = `
-      <a href="profile.html" class="profile-btn" title="View Profile">
+      <a href="http://127.0.0.1:5501/profile.html" class="profile-btn" title="View Profile">
         <i class="fa-solid fa-user"></i>
         <span>${firstName}</span>
       </a>
@@ -219,6 +220,30 @@ document.addEventListener('DOMContentLoaded', () => {
         addBtn.style.color = '';
       }, 1200);
     }
+
+   
+  const searchForm = document.querySelector('.search-box');
+  const searchInput = document.querySelector('.search-input');
+
+  searchForm.addEventListener('submit', function (e) {
+    e.preventDefault(); // Stop the form from submitting normally
+
+    // Clean and normalize user input
+    const query = searchInput.value.toLowerCase().trim();
+
+    // Map input keywords to specific pages
+    if (query.includes('formal')) {
+      window.location.href = 'http://127.0.0.1:5501/formal.html';
+    } else if (query.includes('foot wear') || query.includes('footwear') || query.includes('shoe')) {
+      window.location.href = 'http://127.0.0.1:5501/footwear.html';
+    } else if (query.includes('jwellwey') || query.includes('jewelry') || query.includes('jewellery')) {
+      window.location.href = 'http://127.0.0.1:5501/jwel.html';
+    } else {
+      // Fallback: Redirect to default product page with search query
+      window.location.href = `http://127.0.0.1:5501/product.html?q=${encodeURIComponent(query)}`;
+    }
+  });
+
 
     // --- Handle Wishlist Button Click ---
     const wishBtn = e.target.closest('.wishlist-btn, [class*="wishlist"]');

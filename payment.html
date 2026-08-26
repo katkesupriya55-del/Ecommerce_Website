@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment - Shop Easy</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="Ecommerce.css">
+  <link rel="stylesheet" href="checkout.css">
+  <style>
+    .payment-options { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
+    .payment-option { display: flex; align-items: center; gap: 15px; border: 2px solid #e2e8f0; padding: 15px; border-radius: 8px; cursor: pointer; transition: 0.2s; }
+    .payment-option:hover, .payment-option.active { border-color: #0f172a; background-color: #f8fafc; }
+    .payment-option input { width: 18px; height: 18px; cursor: pointer; }
+    .pay-now-btn { width: 100%; margin-top: 25px; padding: 14px; background: #22c55e; color: #fff; font-size: 1.1rem; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
+    .pay-now-btn:hover { background: #16a34a; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="first">
+      <a href="Ecommerce.html"><img src="./ShopEasy...png" alt="Shop Easy Logo"></a>
+    </div>
+  </nav>
+
+  <main class="page-container" style="max-width: 600px; margin: 40px auto; padding: 0 20px;">
+    <h2>Select Payment Method</h2>
+    <p>Complete your purchase securely</p>
+
+    <form id="payment-form" onsubmit="processPayment(event)">
+      <div class="payment-options">
+        
+        <label class="payment-option active">
+          <input type="radio" name="payment_method" value="UPI" checked>
+          <i class="fa-solid fa-qrcode fa-xl"></i>
+          <div>
+            <strong>UPI / QR Code</strong>
+            <p style="margin:0; font-size: 0.85rem; color:#64748b;">Google Pay, PhonePe, Paytm</p>
+          </div>
+        </label>
+
+        <label class="payment-option">
+          <input type="radio" name="payment_method" value="Card">
+          <i class="fa-solid fa-credit-card fa-xl"></i>
+          <div>
+            <strong>Credit / Debit Card</strong>
+            <p style="margin:0; font-size: 0.85rem; color:#64748b;">Visa, MasterCard, RuPay</p>
+          </div>
+        </label>
+
+        <label class="payment-option">
+          <input type="radio" name="payment_method" value="COD">
+          <i class="fa-solid fa-money-bill-wave fa-xl"></i>
+          <div>
+            <strong>Cash on Delivery (COD)</strong>
+            <p style="margin:0; font-size: 0.85rem; color:#64748b;">Pay when item arrives</p>
+          </div>
+        </label>
+
+      </div>
+
+      <button type="submit" class="pay-now-btn">
+        Complete Payment <i class="fa-solid fa-lock"></i>
+      </button>
+    </form>
+  </main>
+
+  <script src="payment.js"></script>
+</body>
+</html>
