@@ -10,6 +10,13 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+// Database Connection
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/shopeasy';
+
+mongoose.connect(MONGO_URI)
+  .then(() => console.log('MongoDB Connected Successfully'))
+  .catch((err) => console.error('MongoDB Connection Error:', err));
+
 // API Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/products', require('./routes/products'));
@@ -19,12 +26,10 @@ app.get('/', (req, res) => {
   res.send('Shop Easy API Server Active');
 });
 
-// Database Connection & Server Startup
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/shopeasy';
+// Local Development Server listener
+if (require.main === module) {
+  app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+}
 
-mongoose.connect(MONGO_URI)
-  .then(() => {
-    console.log('MongoDB Connected Successfully');
-    app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
-  })
-  .catch((err) => console.error('MongoDB Connection Error:', err));
+// REQUIRED FOR VERCEL DEPLOYMENT
+module.exports = app;
