@@ -176,5 +176,53 @@
   <!-- Scripts -->
   <script src="Ecommerce.js"></script>
   <script src="checkout.js"></script>
+
+
+  <script>
+    document.getElementById('checkout-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+      // Prevent submitting empty orders
+      if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+      }
+
+      // Calculate total amount safely
+      const totalAmount = cart.reduce((sum, item) => {
+        const numericPrice = typeof item.price === 'number' 
+          ? item.price 
+          : parseFloat(item.price.replace(/[^0-9.]/g, '')) || 0;
+        return sum + (numericPrice * item.quantity);
+      }, 0);
+
+      const orderData = {
+        customerName: e.target[0].value,
+        shippingAddress: e.target[1].value,
+        items: cart,
+        totalAmount: totalAmount
+      };
+
+      try {
+        const res = await fetch('http://localhost:5000/api/orders', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(orderData)
+        });
+
+        if (res.ok) {
+          alert('Order placed and saved in MongoDB!');
+          localStorage.removeItem('cart'); // Clear cart after successful order
+          window.location.href = 'Ecommerce.html'; // Redirect to homepage
+        } else {
+          alert('Failed to place order. Please try again.');
+        }
+      } catch (err) {
+        console.error('Checkout error:', err);
+      }
+    });
+  </script>
 </body>
 </html>

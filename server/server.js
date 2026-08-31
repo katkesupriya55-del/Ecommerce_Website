@@ -1,36 +1,50 @@
-const express = require("express");
-const cors = require("cors");
-const mongoose = require("mongoose");
-require("dotenv").config();
+const express = require('express');
+const path = require('path');
+const mongoose = require('mongoose');
+const cors = require('cors');
+require('dotenv').config();
 
+// Initialize Express App
 const app = express();
 
-// Middleware
+// Core Middleware
 app.use(cors());
 app.use(express.json());
 
-// MongoDB Connection
-const MONGO_URI =
-  process.env.MONGO_URI ||
-  "mongodb://127.0.0.1:27017/shopeasy";
+// Serve Static Files (HTML, CSS, JS, Images) from parent directory
+app.use(express.static(path.join(__dirname, '../')));
 
-mongoose
-  .connect(MONGO_URI)
-  .then(() => console.log("MongoDB Connected Successfully"))
-  .catch((err) =>
-    console.error("MongoDB Connection Error:", err)
-  );
+// Import API Routes
+const productRoutes = require('./routes/products');
+const orderRoutes = require('./routes/orders');
 
-// Routes
-app.use("/api/auth", require("./routes/auth"));
-app.use("/api/products", require("./routes/products"));
-
-// Test Route
-app.get("/", (req, res) => {
-  res.status(200).json({
-    message: "Shop Easy API Server Active"
-  });
+// Serve Homepage
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../Ecommerce.html'));
 });
 
-// Export for Vercel
-module.exports = app;
+// API Route Middlewares
+app.use('/api/products', productRoutes);
+app.use('/api/orders', orderRoutes);
+
+// Database Connection
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('MongoDB connected successfully'))
+  .catch(err => console.error('MongoDB connection error:', err));
+
+// Handle 404 (Route Not Found)
+app.use((req, res) => {
+  res.status(404).json({ error: 'API route not found' });
+});
+
+// Global Error Handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: 'Internal Server Error' });
+});
+
+// Server Listener
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});

@@ -4,48 +4,40 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Wishlist - Shop Easy</title>
-  
+
   <!-- FontAwesome & Google Fonts -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap" rel="stylesheet">
-  
+
   <!-- Stylesheets -->
   <link rel="stylesheet" href="Ecommerce.css" />
   <link rel="stylesheet" href="product.css" />
-  <link rel="stylesheet" href="footwear.css" />
   <link rel="stylesheet" href="wishlist.css" />
 </head>
 <body>
 
-  <!-- FontAwesome Icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<header class="navbar">
-  
-  <a href="http://127.0.0.1:5501/Ecommerce.html" class="brand-logo">
-    <img src="./ShopEasy...png" alt="ShopEasy Logo">
-  </a>
-
- 
-  <div class="nav-actions">
-    <a href="./wishlist.html" class="nav-pill" aria-label="Wishlist">
-      <i class="fa-regular fa-heart"></i>
-      <span class="pill-label">Wishlist</span>
-      <span class="count-badge">3</span>
+  <!-- Navigation Header -->
+  <header class="navbar">
+    <a href="Ecommerce.html" class="brand-logo">
+      <img src="./ShopEasy...png" alt="ShopEasy Logo">
     </a>
 
-    <a href="./cart.html" class="nav-pill active-pill" aria-label="Cart">
-      <i class="fa-solid fa-bag-shopping"></i>
-      <span class="pill-label">Cart</span>
-      <span class="count-badge highlight">6</span>
-    </a>
+    <div class="nav-actions">
+      <a href="./wishlist.html" class="nav-pill active-pill" aria-label="Wishlist">
+        <i class="fa-regular fa-heart"></i>
+        <span class="pill-label">Wishlist</span>
+        <span class="count-badge" id="wishlist-count">0</span>
+      </a>
 
-  
-  </div>
-</header>
-
+      <a href="./cart.html" class="nav-pill" aria-label="Cart">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="pill-label">Cart</span>
+        <span class="count-badge highlight">6</span>
+      </a>
+    </div>
+  </header>
 
   <!-- Wishlist Main Content -->
   <main class="page-container">
@@ -58,22 +50,24 @@
     <div id="wishlist-grid" class="product-grid"></div>
 
     <!-- Empty State View -->
-    <div id="empty-wishlist" class="empty-state" style="display: none;">
-      <i class="fa-regular fa-heart empty-icon"></i>
+    <div id="empty-wishlist" class="empty-state">
+      <div class="empty-icon-box">
+        <i class="fa-regular fa-heart empty-icon"></i>
+      </div>
       <h2>Your wishlist is empty</h2>
       <p>Explore our catalog and save your favorite products!</p>
-      <a href="product.html" class="btn-explore">Back</a>
+      <a href="product.html" class="btn-explore">
+        <i class="fa-solid fa-arrow-left"></i> Back to Shop
+      </a>
     </div>
   </main>
 
-<div class="last" >
-      <a href="http://127.0.0.1:5501/Ecommerce.html" class="back-btn">
-  <i class="fa-solid fa-arrow-left"></i> Back
-</a>
+  <div class="last">
+    <a href="Ecommerce.html" class="back-btn">
+      <i class="fa-solid fa-arrow-left"></i> Back
+    </a>
+  </div>
 
-</div>
-
-  <!-- Scripts: Keep only global navbar logic and wishlist rendering -->
   <script src="Ecommerce.js"></script>
   <script src="wishlist.js"></script>
 </body>

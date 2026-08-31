@@ -244,6 +244,143 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  async function filterProductsByCategory(categoryName) {
+  const container = document.getElementById('product-container');
+  if (!container) return;
+
+  try {
+    const url = categoryName && categoryName !== 'All' 
+      ? `http://localhost:5000/api/products?category=${encodeURIComponent(categoryName)}`
+      : 'http://localhost:5000/api/products';
+
+    const response = await fetch(url);
+    const products = await response.json();
+
+    if (products.length === 0) {
+      container.innerHTML = `<p style="grid-column: 1/-1; text-align: center;">No products found in this category.</p>`;
+      return;
+    }
+
+    container.innerHTML = products.map(product => `
+      <div class="product-card">
+        <img src="${product.image}" alt="${product.title}">
+        <h3>${product.title}</h3>
+        <p>$${product.price}</p>
+        <button onclick="addToCart('${product._id}')">Add to Cart</button>
+      </div>
+    `).join('');
+  } catch (error) {
+    console.error('Error filtering products:', error);
+  }
+}
+
+  // Retrieve cart from localStorage or initialize empty array
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+// Update cart badge count in navbar
+function updateCartBadge() {
+  const cartBadge = document.getElementById('cart-count');
+  if (cartBadge) {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 1);
+    cartBadge.textContent = cart.length;
+  }
+}
+
+// Add item to cart
+async function addToCart(productId) {
+  try {
+    const response = await fetch(`http://localhost:5000/api/products`);
+    const products = await response.json();
+    const product = products.find(p => p._id === productId);
+
+    if (product) {
+      const existingItem = cart.find(item => item._id === productId);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({ ...product, quantity: 1 });
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartBadge();
+      alert(`${product.title} added to your cart!`);
+    }
+  } catch (error) {
+    console.error('Failed to add item to cart:', error);
+  }
+}
+async function fetchProducts() {
+  const container = document.getElementById('product-container'); // Ensure this ID matches your HTML grid container
+  if (!container) return;
+
+  try {
+    const response = await fetch('http://localhost:5000/api/products');
+    const products = await response.json();
+
+    if (products.length === 0) {
+      container.innerHTML = '<p>No products found in database.</p>';
+      return;
+    }
+
+    container.innerHTML = products.map(product => `
+      <div class="product-card">
+        <img src="${product.image}" alt="${product.title}">
+        <h3>${product.title}</h3>
+        <p class="category">${product.category}</p>
+        <p class="price">$${product.price.toFixed(2)}</p>
+        <button onclick="addToCart('${product._id}', '${product.title}', ${product.price}, '${product.image}')">
+          Add to Cart
+        </button>
+      </div>
+    `).join('');
+  } catch (err) {
+    console.error('Error fetching products:', err);
+    container.innerHTML = '<p>Failed to load products from server.</p>';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', fetchProducts);
+// Initialize badge on load
+document.addEventListener('DOMContentLoaded', updateCartBadge);
+
+  async function loadProducts() {
+  const container = document.getElementById('product-container');
+  if (!container) return;
+
+  try {
+    const response = await fetch('http://localhost:5000/api/products');
+    const products = await response.json();
+
+    container.innerHTML = products.map(product => `
+      <div class="product-card">
+        <img src="${product.image}" alt="${product.title}">
+        <h3>${product.title}</h3>         <p>$${product.price}</p>
+        <button onclick="addToCart('${product._id}')">Add to Cart</button>
+      </div>
+    `).join('');
+  } catch (error) {
+    console.error('Error loading products from server:', error);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadProducts);
+
+  // Fetch products dynamically from backend API
+async function displayProductsFromDatabase() {
+  try {
+    const response = await fetch('http://localhost:5000/api/products');
+    const products = await response.json();
+    
+    console.log('Fetched products from MongoDB:', products);
+    // Render products dynamically in your HTML container here
+  } catch (error) {
+    console.error('Failed to load products:', error);
+  }
+}
+
+// Call function on page load
+document.addEventListener('DOMContentLoaded', displayProductsFromDatabase);
+
 
     // --- Handle Wishlist Button Click ---
     const wishBtn = e.target.closest('.wishlist-btn, [class*="wishlist"]');
