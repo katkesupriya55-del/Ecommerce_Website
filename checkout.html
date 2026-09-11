@@ -18,35 +18,18 @@
 </head>
 <body>
 
-  <!-- Shared Navbar -->
-  <nav class="navbar">
-    <div class="first">
-      <a href="Ecommerce.html"><img src="./ShopEasy...png" alt="Shop Easy Logo"></a>
-    </div>
-
-    <div class="nav-item">
-      <a href="cart.html" class="icon-link" aria-label="Cart">
-        <i class="fa-solid fa-cart-shopping fa-xl" style="color: rgb(22, 21, 21);"></i>
-        <span id="cart-count" class="badge">0</span>
-      </a>
-      <a href="wishlist.html" class="icon-link" aria-label="Wishlist"> 
-        <i class="fa-solid fa-heart fa-xl" style="color: rgb(22, 21, 21);"></i>
-        <span id="wishlist-count" class="badge">0</span>
-      </a>
-    </div>
-  </nav>
 
   <!-- Checkout Main Content -->
   <main class="page-container">
     <header class="catalog-header">
-      <h1>Checkout</h1>
+      <h1 style="color: brown; font-family: serif;">Checkout</h1>
       <p class="subtitle">Please enter your contact and shipping details to complete your order</p>
     </header>
 
     <div class="checkout-layout">
       <!-- Customer Information Form -->
       <section class="checkout-form-section">
-        <form id="checkout-form" onsubmit="handlePlaceOrder(event)">
+        <form id="checkout-form" onsubmit="handlePlaceOrder(event)" action="http://127.0.0.1:5501/payment.html" method="GET">
           
           <!-- Contact Details -->
           <div class="form-block">
@@ -60,7 +43,8 @@
             <div class="form-row">
               <div class="form-group">
                 <label for="mobile">Mobile Number *</label>
-                <input type="tel" id="mobile" placeholder="10-digit mobile number" pattern="[0-9]{10}" required />
+                <input type="tel" id="mobile" placeholder="10-digit mobile number" pattern="[0-9]{10}" maxlength="10" inputmode="numeric"
+                autocomplete="tel" required />
               </div>
               <div class="form-group">
                 <label for="email">Email Address *</label>
@@ -94,9 +78,9 @@
             </div>
           </div>
 
-          <a href="http://127.0.0.1:5501/payment.html" type="submit" class="submit-order-btn">
-            Place Order <i class="fa-solid fa-arrow-right"></i>
-          </a>
+          <button type="submit" class="submit-order-btn">
+              Place Order <i class="fa-solid fa-arrow-right"></i>
+          </button>
         </form>
       </section>
 
@@ -113,11 +97,7 @@
 
   <!-- Coupon / Promo Code Input -->
   <div class="promo-code-container">
-    <!-- <div class="promo-input-group">
-      <i class="fa-solid fa-ticket promo-icon"></i>
-      <input type="text" id="promo-code-input" placeholder="Promo code (e.g. SAVE10)" />
-      <button type="button" class="btn-apply-promo" onclick="applyPromoCode()">Apply</button>
-    </div> -->
+  
     <div id="promo-message" class="promo-message"></div>
   </div>
 
@@ -178,51 +158,6 @@
   <script src="checkout.js"></script>
 
 
-  <script>
-    document.getElementById('checkout-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      
-      // Prevent submitting empty orders
-      if (cart.length === 0) {
-        alert('Your cart is empty!');
-        return;
-      }
-
-      // Calculate total amount safely
-      const totalAmount = cart.reduce((sum, item) => {
-        const numericPrice = typeof item.price === 'number' 
-          ? item.price 
-          : parseFloat(item.price.replace(/[^0-9.]/g, '')) || 0;
-        return sum + (numericPrice * item.quantity);
-      }, 0);
-
-      const orderData = {
-        customerName: e.target[0].value,
-        shippingAddress: e.target[1].value,
-        items: cart,
-        totalAmount: totalAmount
-      };
-
-      try {
-        const res = await fetch('http://localhost:5000/api/orders', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(orderData)
-        });
-
-        if (res.ok) {
-          alert('Order placed and saved in MongoDB!');
-          localStorage.removeItem('cart'); // Clear cart after successful order
-          window.location.href = 'Ecommerce.html'; // Redirect to homepage
-        } else {
-          alert('Failed to place order. Please try again.');
-        }
-      } catch (err) {
-        console.error('Checkout error:', err);
-      }
-    });
-  </script>
+ 
 </body>
 </html>

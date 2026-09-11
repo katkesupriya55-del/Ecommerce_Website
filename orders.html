@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Orders - Shop Easy</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Ecommerce.css">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f8fafc;
+      min-height: 100vh;
+    }
+
+    .navbar {
+      background: #ffffff;
+      box-shadow: 0 2px 12px rgba(15, 23, 42, 0.05);
+    }
+
+    .orders-page-container {
+      max-width: 760px;
+      margin: 40px auto;
+      padding: 0 20px 60px;
+    }
+
+    .orders-header {
+      margin-bottom: 28px;
+    }
+
+    .orders-header h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0 0 4px;
+    }
+
+    .orders-header p {
+      color: #64748b;
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    .order-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 20px 22px;
+      margin-bottom: 18px;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.4s ease-out forwards;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .order-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #f1f5f9;
+      margin-bottom: 14px;
+    }
+
+    .order-id-block .order-id {
+      font-weight: 700;
+      color: #0f172a;
+      font-size: 1rem;
+    }
+
+    .order-id-block .order-date {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      margin-top: 2px;
+    }
+
+    .order-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .order-status-badge.paid {
+      background: #f0fdf4;
+      color: #16a34a;
+      border: 1px solid #bbf7d0;
+    }
+
+    .order-status-badge.pending {
+      background: #fffbeb;
+      color: #d97706;
+      border: 1px solid #fde68a;
+    }
+
+    .order-items-preview {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .order-item-thumb {
+      position: relative;
+      width: 56px;
+      height: 56px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+      flex-shrink: 0;
+    }
+
+    .order-item-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .order-item-thumb .qty-tag {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background: rgba(15, 23, 42, 0.85);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-top-left-radius: 6px;
+    }
+
+    .order-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .order-meta {
+      font-size: 0.82rem;
+      color: #64748b;
+    }
+
+    .order-total {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .toggle-details-btn {
+      background: transparent;
+      border: 1.5px solid #e2e8f0;
+      color: #475569;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .toggle-details-btn:hover {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+    }
+
+    .order-full-details {
+      display: none;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px dashed #e2e8f0;
+    }
+
+    .order-full-details.expanded {
+      display: block;
+    }
+
+    .order-line-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+    }
+
+    .order-line-item img {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1px solid #e2e8f0;
+    }
+
+    .order-line-item .item-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .order-line-item .item-title {
+      font-size: 0.85rem;
+      color: #0f172a;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .order-line-item .item-qty {
+      font-size: 0.78rem;
+      color: #94a3b8;
+    }
+
+    .order-line-item .item-price {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    /* Empty state */
+    .empty-orders {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .empty-orders i {
+      font-size: 3rem;
+      color: #cbd5e1;
+      margin-bottom: 16px;
+    }
+
+    .empty-orders h2 {
+      color: #0f172a;
+      font-size: 1.2rem;
+      margin: 0 0 8px;
+    }
+
+    .empty-orders p {
+      color: #64748b;
+      font-size: 0.9rem;
+      margin: 0 0 20px;
+    }
+
+    .browse-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0f172a;
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+    .browse-btn:hover {
+      background: #1e293b;
+      transform: translateY(-2px);
+    }
+
+    .back-home-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.back-home-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: #475569;
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1.5px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.back-home-btn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #1e293b;
+  transform: translateY(-2px);
+}
+
+    @media (max-width: 480px) {
+      .order-card {
+        padding: 16px;
+      }
+
+      .order-card-header {
+        flex-direction: column;
+      }
+
+      .order-total {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+
+  <div class="orders-page-container">
+    <div class="orders-header">
+      <h1>My Orders</h1>
+      <p>Track and review your past purchases</p>
+    </div>
+
+    <div id="orders-list"></div>
+
+    <div id="empty-orders" class="empty-orders" style="display: none;">
+      <i class="fa-solid fa-box-open"></i>
+      <h2>No orders yet</h2>
+      <p>Your placed orders will show up here once you complete a purchase.</p>
+      <a href="Ecommerce.html" class="browse-btn">
+        <i class="fa-solid fa-bag-shopping"></i> Start Shopping
+      </a>
+    </div>
+        <div class="back-home-wrapper">
+      <a href="Ecommerce.html" class="back-home-btn">
+        <i class="fa-solid fa-house"></i> Back to Home
+      </a>
+    </div>
+  </div>
+
+  <script src="orders.js"></script>
+</body>
+</html>

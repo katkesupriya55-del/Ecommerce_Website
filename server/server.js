@@ -17,6 +17,7 @@ app.use(express.static(path.join(__dirname, '../')));
 // Import API Routes
 const productRoutes = require('./routes/products');
 const orderRoutes = require('./routes/orders');
+const authRoutes = require('./routes/auth'); // Added Auth Route
 
 // Serve Homepage
 app.get('/', (req, res) => {
@@ -26,6 +27,7 @@ app.get('/', (req, res) => {
 // API Route Middlewares
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/auth', authRoutes); // Added Auth Middleware
 
 // Database Connection
 mongoose.connect(process.env.MONGO_URI)

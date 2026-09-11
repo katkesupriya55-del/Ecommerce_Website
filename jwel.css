@@ -26,7 +26,7 @@
       font-size: 2.2rem;
       font-weight: 700;
       letter-spacing: 1px;
-      color: #111;
+      color: darkred;
       margin-bottom: 8px;
     }
 
@@ -116,7 +116,7 @@
       top: 12px;
       left: 12px;
       background-color: #111;
-      color: #fff;
+      color: #ffffff;
       font-size: 0.7rem;
       font-weight: 600;
       text-transform: uppercase;
@@ -164,8 +164,9 @@
     }
 
     .card-btn {
-      background-color: #111111;
-      color: #ffffff;
+      background-color:  #e8d5b7;
+  color: #5c1a1a;
+
       border: none;
       padding: 9px 16px;
       border-radius: 6px;
@@ -176,7 +177,8 @@
     }
 
     .card-btn:hover {
-      background-color: #333333;
+      background-color: #5c1a1a;
+      color: #ffffff;
     }   .last{
       display: flex; 
       justify-content: center;
@@ -225,14 +227,14 @@
   padding: 10px 22px;
   
   /* Text & Typography */
-  color: #0d233a;
+  color: #ffffff;
   font-size: 15px;
   font-weight: 600;
   text-decoration: none; /* Removes default link underline */
   
   /* Background & Border Properties */
-  background-color: #ffffff;
-  border: 2px solid #0d233a; /* Solid color border */
+  background-color:  #5c1a1a;
+  /* Solid color border */
   border-radius: 30px;       /* Rounded pill shape */
   
   /* Depth & Animation */
@@ -243,7 +245,7 @@
 
 /* Hover State */
 .back-btn:hover {
-  background-color: #0d233a;
+  background-color: darkred;
   color: #ffffff;
   transform: translateY(-2px); /* Slight lift effect */
   box-shadow: 0 6px 14px rgba(13, 35, 58, 0.25);
@@ -294,28 +296,10 @@
   gap: 10px;
 }
 
-/* Pill Buttons */
-.nav-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  border-radius: 30px;
-  background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
-  color: #334155;
-  font-size: 0.875rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
 
-.nav-pill:hover {
-  background-color: #0f172a;
-  border-color: #0f172a;
-  color: #ffffff;
-  transform: translateY(-1px);
-}.navbar {
+
+
+.navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -356,9 +340,9 @@
   gap: 8px;
   padding: 8px 14px;
   border-radius: 30px;
-  background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
-  color: #334155;
+  background-color: #5c1a1a;
+  border: 1px solid #5c1a1a;
+  color: #f0dcb4;
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
@@ -366,9 +350,9 @@
 }
 
 .nav-pill:hover {
-  background-color: #0f172a;
-  border-color: #0f172a;
-  color: #ffffff;
+  background-color: #4a1414;
+  border-color: #4a1414;
+  color: #f0dcb4;
   transform: translateY(-1px);
 }
 
@@ -435,7 +419,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: #e2e8f0;
+  background-color: rgb(182, 133, 133);
   color: #0f172a;
   font-size: 0.75rem;
   font-weight: 700;
@@ -444,20 +428,14 @@
   transition: background-color 0.2s, color 0.2s;
 }
 
-.count-badge.highlight {
- background-color: rgba(255, 255, 255, 0.2);
-   background-color: #e2e8f0;
-
-}
-
 /* Hover States for Badges */
 .nav-pill:hover .count-badge {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(238, 40, 40, 0.2);
   color: #ffffff;
 }
 
 .nav-pill:hover .count-badge.highlight {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(238, 40, 40, 0.2);
   color: #ffffff;
 } 
 
@@ -510,5 +488,171 @@
   .count-badge {
     font-size: 0.7rem;
     padding: 1px 5px;
+  }
+}
+
+/* Hover Description Overlay */
+.card-img-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 130%;
+  overflow: hidden;
+  background-color: #e9ecef;
+}
+
+.card-description-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 16px;
+  background: rgba(15, 23, 42, 0.55); /* transparent dark tint over the image */
+  backdrop-filter: blur(2px);
+  color: #ffffff;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+  z-index: 5;
+}
+
+.card:hover .card-description-overlay {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+
+/* ==========================================
+   8. FOOTER & COPYRIGHT
+   ========================================== */
+.Footer {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #e8d5b7;
+  padding: 40px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;
+  border-radius: 20px;
+}
+
+.Footer .head h5 {
+  font-weight: 200;
+  line-height: 1.5;
+  color: black;
+  
+}
+
+.Footer .contain1 a {
+  text-decoration: none;
+  color: black;
+  display: block;
+  margin-top: 8px;
+}
+
+.Footer .contain1 a:hover{
+  text-decoration: none;
+  color:brown;
+  display: block;
+  margin-top: 8px;
+  font-weight: bold;
+}
+
+
+
+@media (max-width: 768px) {
+  .Footer {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 32px 24px;
+    gap: 28px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: none;
+    margin: 24px 0 0;
+    box-sizing: border-box;
+  }
+
+  .Footer .head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .Footer .head img {
+    height: 90px !important;
+    margin: 0 auto 12px;
+  }
+
+  .Footer .head h5 {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    max-width: 320px;
+    margin: 0 auto;
+    font-weight: 400;
+  }
+
+  .Footer .head h5 br {
+    display: none;
+  }
+
+  .Footer .contain1 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .Footer .contain1 h2 {
+    font-size: 1rem;
+    margin: 0 auto 10px;
+  }
+
+  .Footer .contain1 a {
+    font-size: 0.85rem;
+    margin: 6px auto 0;
+    text-align: center;
+  }
+
+  .Footer .contain1 br {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .Footer {
+    padding: 24px 16px;
+    gap: 22px;
+    border-radius: 12px;
+  }
+
+  .Footer .head img {
+    height: 70px !important;
+  }
+
+  .Footer .head h5 {
+    font-size: 0.8rem;
+    max-width: 280px;
+  }
+
+  .Footer .contain1 h2 {
+    font-size: 0.92rem;
+  }
+
+  .Footer .contain1 a {
+    font-size: 0.8rem;
+  }
+
+  #final h3 {
+    font-size: 0.75rem;
+    text-align: center;
+    padding: 12px;
   }
 }

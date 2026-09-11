@@ -1,109 +1,45 @@
-document.addEventListener('DOMContentLoaded', () => {
-  renderCheckoutSummary();
-});
-
-// Helper to parse price string to number
-function parsePrice(priceString) {
-  if (!priceString) return 0;
-  const numericString = priceString.replace(/[^0-9.]/g, '');
-  return parseFloat(numericString) || 0;
-}
-
-// Format currency display
-function formatCurrency(amount) {
-  return '$' + amount.toFixed(2);
-}
-
-// Load cart items into the checkout order summary
-function renderCheckoutSummary() {
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  const itemsContainer = document.getElementById('checkout-items-preview');
-
-  if (cart.length === 0) {
-    alert('No items in cart to checkout!');
-    window.location.href = 'product.html';
-    return;
-  }
-
-  let subtotal = 0;
-
-  itemsContainer.innerHTML = cart.map((item) => {
-    const itemPrice = parsePrice(item.price);
-    const itemTotal = itemPrice * item.quantity;
-    subtotal += itemTotal;
-
-    return `
-      <div class="checkout-item-row">
-        <img class="checkout-item-img" src="${item.image || 'c1.jpg'}" alt="${item.title}" />
-        <div class="checkout-item-info">
-          <h4 class="checkout-item-title">${item.title}</h4>
-          <span class="checkout-item-qty">Qty: ${item.quantity}</span>
-        </div>
-        <span class="checkout-item-price">${formatCurrency(itemTotal)}</span>
-      </div>
-    `;
-  }).join('');
-
-  const tax = subtotal * 0.05;
-  const total = subtotal + tax;
-
-  document.getElementById('checkout-subtotal').textContent = formatCurrency(subtotal);
-  document.getElementById('checkout-tax').textContent = formatCurrency(tax);
-  document.getElementById('checkout-total').textContent = formatCurrency(total);
-}
-
-// Form Submission & Order Confirmation Logic
-function handlePlaceOrder(event) {
-  event.preventDefault();
-
-  const name = document.getElementById('full-name').value;
-  const mobile = document.getElementById('mobile').value;
-  const email = document.getElementById('email').value;
-  const address = document.getElementById('address').value;
-  const city = document.getElementById('city').value;
-
-  alert(`Thank you for your order, ${name}!\n\nOrder Confirmation sent to: ${email}\nShipping to: ${address}, ${city}\nContact: ${mobile}`);
-
-  // Clear Cart after successful order placement
-  localStorage.removeItem('cart');
-
-  // Update badge counter
-  if (typeof updateBadgeCounts === 'function') {
-    updateBadgeCounts();
-  }
-
-  // Redirect to home or products page
-  window.location.href = 'Ecommerce.html';
-}
-
 let discountPercent = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
+  const mobileInput = document.getElementById('mobile');
+  if (mobileInput) {
+    mobileInput.addEventListener('input', () => {
+      // Strip anything that isn't a digit, then cap at 10 characters
+      mobileInput.value = mobileInput.value.replace(/[^0-9]/g, '').slice(0, 10);
+    });
+
+    // Also block paste of non-numeric content
+    mobileInput.addEventListener('paste', (e) => {
+      e.preventDefault();
+      const pasted = (e.clipboardData || window.clipboardData).getData('text');
+      const digitsOnly = pasted.replace(/[^0-9]/g, '').slice(0, 10);
+      mobileInput.value = digitsOnly;
+    });
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
   renderCheckoutSummary();
 });
 
-function parsePrice(priceString) {
-  if (!priceString) return 0;
-  const numericString = priceString.replace(/[^0-9.]/g, '');
-  return parseFloat(numericString) || 0;
-}
+function getCart() { return JSON.parse(localStorage.getItem('shop_cart')) || []; }
+function setCart(cart) { localStorage.setItem('shop_cart', JSON.stringify(cart)); }
 
 function formatCurrency(amount) {
   return '$' + amount.toFixed(2);
 }
 
 function renderCheckoutSummary() {
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const cart = getCart();
   const itemsContainer = document.getElementById('checkout-items-preview');
   const itemCountBadge = document.getElementById('summary-item-count');
 
   if (cart.length === 0) {
     alert('No items in cart to checkout!');
-    window.location.href = 'product.html';
+    window.location.href = 'cart.html';
     return;
   }
 
-  // Calculate total items quantity
   const totalItemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   if (itemCountBadge) {
     itemCountBadge.textContent = `${totalItemsCount} ${totalItemsCount === 1 ? 'Item' : 'Items'}`;
@@ -111,16 +47,14 @@ function renderCheckoutSummary() {
 
   let subtotal = 0;
 
-  // Render Items List with Quantity Badges
   itemsContainer.innerHTML = cart.map((item) => {
-    const itemPrice = parsePrice(item.price);
-    const itemTotal = itemPrice * item.quantity;
+    const itemTotal = item.price * item.quantity;
     subtotal += itemTotal;
 
     return `
       <div class="checkout-item-row">
         <div class="item-img-wrapper">
-          <img class="checkout-item-img" src="${item.image || 'c1.jpg'}" alt="${item.title}" />
+          <img class="checkout-item-img" src="${item.img}" alt="${item.title}" />
           <span class="item-qty-badge">${item.quantity}</span>
         </div>
         <div class="checkout-item-info">
@@ -131,15 +65,13 @@ function renderCheckoutSummary() {
     `;
   }).join('');
 
-  // Apply Discount
   const discountAmount = subtotal * discountPercent;
   const subtotalAfterDiscount = subtotal - discountAmount;
   const tax = subtotalAfterDiscount * 0.05;
   const total = subtotalAfterDiscount + tax;
 
-  // Update Summary Pricing
   document.getElementById('checkout-subtotal').textContent = formatCurrency(subtotal);
-  
+
   const discountRow = document.getElementById('discount-row');
   if (discountPercent > 0) {
     discountRow.style.display = 'flex';
@@ -152,13 +84,12 @@ function renderCheckoutSummary() {
   document.getElementById('checkout-total').textContent = formatCurrency(total);
 }
 
-// Promo Code Handler
 function applyPromoCode() {
   const codeInput = document.getElementById('promo-code-input').value.trim().toUpperCase();
   const messageBox = document.getElementById('promo-message');
 
   if (codeInput === 'SAVE10') {
-    discountPercent = 0.10; // 10% discount
+    discountPercent = 0.10;
     messageBox.className = 'promo-message success';
     messageBox.textContent = '10% Discount applied successfully!';
   } else if (codeInput === '') {
@@ -173,57 +104,53 @@ function applyPromoCode() {
   renderCheckoutSummary();
 }
 
-// Function to generate Order ID and save full order details
+// Form submission & order confirmation
+function handlePlaceOrder(event) {
+  event.preventDefault();
+
+  const name = document.getElementById('full-name').value;
+  const mobile = document.getElementById('mobile').value;
+  const email = document.getElementById('email').value;
+  const address = document.getElementById('address').value;
+  const city = document.getElementById('city').value;
+
+  const order = finalizeOrder();
+
+  // Redirect to payment page, passing the order ID and total so payment.html can display them
+  window.location.href = `payment.html?orderId=${order.id}&amount=${order.totalPrice.toFixed(2)}`;
+}
+// Saves order to history, clears the cart, and updates badges
 function finalizeOrder(paymentType = 'Online Payment', transactionId = 'TXN-' + Date.now()) {
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  if (cart.length === 0) return;
+  const cart = getCart();
+  if (cart.length === 0) return null;
 
-  // 1. Auto-generate Unique Order ID
   const orderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
-  
-  // 2. Format Order Date
-  const orderDate = new Date().toLocaleString('en-US', {
-    dateStyle: 'medium',
-    timeStyle: 'short'
-  });
+  const orderDate = new Date().toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' });
 
-  // 3. Calculate Total Price
-  const totalAmount = cart.reduce((sum, item) => {
-    const numericPrice = parseFloat(String(item.price).replace(/[^0-9.]/g, '')) || 0;
-    return sum + (numericPrice * (item.quantity || 1));
-  }, 0);
+  const totalAmount = cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
 
-  // 4. Construct Full Order Object
   const newOrder = {
     id: orderId,
     date: orderDate,
     items: cart,
     totalPrice: totalAmount,
-    paymentMethod: paymentType, // 'Online Payment' or 'Cash on Delivery'
+    paymentMethod: paymentType,
     paymentStatus: paymentType === 'Online Payment' ? 'Paid' : 'Pending (COD)',
     transactionId: paymentType === 'Online Payment' ? transactionId : 'N/A'
   };
 
-  // 5. Store in LocalStorage history
   let orders = JSON.parse(localStorage.getItem('orders')) || [];
-  orders.unshift(newOrder); // Add to beginning
+  orders.unshift(newOrder);
   localStorage.setItem('orders', JSON.stringify(orders));
 
-  // 6. Clear current shopping cart
-  localStorage.removeItem('cart');
+  setCart([]);
+  if (typeof updateBadgeCounts === 'function') updateBadgeCounts();
+
+  return newOrder;
 }
 
-// Redirect to orders page when clicking "View Orders" button
-document.getElementById('viewOrdersBtn').addEventListener('click', () => {
-  window.location.href = 'orders.html';
-});
-
-
-
-
-// Redirect to checkout page when clicking 'Proceed to Checkout'
 function checkout() {
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const cart = getCart();
   if (cart.length === 0) {
     alert('Your cart is empty!');
     return;

@@ -8,7 +8,7 @@
 .contact-container {
   max-width: 550px;
   margin: 0 auto;
-  background-color: rgb(206, 203, 204);
+  background-color: #e8d5b7;
   padding: 40px;
   border-radius: 20px;
   border: 2px solid #0f0f0f;
@@ -35,7 +35,7 @@
 .contact-container h2 {
   margin: 0;
   font-size: 28px;
-  color: rgb(22, 21, 21);
+  color: brown;
 }
 
 .contact-container p {
@@ -91,7 +91,7 @@
 
 /* Submit Button & Hover Effect */
 .submit-btn {
-  background-color: rgb(22, 21, 21);
+  background-color: brown;
   color: #ffffff;
   padding: 14px 24px;
   border: none;
@@ -103,8 +103,8 @@
 }
 
 .submit-btn:hover {
-  background-color: whitesmoke;
-  color: black;
+  background-color: darkred;
+  color: white;
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgb(168, 168, 168);
 }

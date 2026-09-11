@@ -1,25 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
   renderCart();
+  updateBadges();
 });
 
-// Helper to parse price string like "$29.99" or "₹1,299" into a float
-function parsePrice(priceString) {
-  if (!priceString) return 0;
-  const numericString = priceString.replace(/[^0-9.]/g, '');
-  return parseFloat(numericString) || 0;
-}
+function getCart() { return JSON.parse(localStorage.getItem('shop_cart')) || []; }
+function setCart(cart) { localStorage.setItem('shop_cart', JSON.stringify(cart)); }
+function getWishlist() { return JSON.parse(localStorage.getItem('shop_wishlist')) || []; }
 
-// Format number to currency format
-function formatCurrency(amount) {
-  return '$' + amount.toFixed(2);
+function updateBadges() {
+  const cart = getCart();
+  const wishlist = getWishlist();
+
+  const cartBadge = document.querySelector('.nav-pill[aria-label="Cart"] .count-badge');
+  const wishlistBadge = document.querySelector('.nav-pill[aria-label="Wishlist"] .count-badge');
+
+  if (cartBadge) {
+    cartBadge.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+  }
+  if (wishlistBadge) {
+    wishlistBadge.textContent = wishlist.length;
+  }
 }
 
 function renderCart() {
+  const listContainer = document.getElementById('cart-items-list');
   const cartContent = document.getElementById('cart-content');
   const emptyState = document.getElementById('empty-cart');
-  const cartItemsList = document.getElementById('cart-items-list');
+  const cart = getCart();
 
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  listContainer.innerHTML = '';
 
   if (cart.length === 0) {
     cartContent.style.display = 'none';
@@ -32,89 +41,59 @@ function renderCart() {
 
   let subtotal = 0;
 
-  // Render Items List
-  cartItemsList.innerHTML = cart.map((item, index) => {
-    const itemPrice = parsePrice(item.price);
-    const itemTotal = itemPrice * item.quantity;
+  cart.forEach((item) => {
+    const itemTotal = item.price * item.quantity;
     subtotal += itemTotal;
 
-    return `
-      <div class="cart-item-card">
-        <img class="cart-item-img" src="${item.image || 'c1.jpg'}" alt="${item.title}" />
-        
-        <div class="cart-item-details">
-          <h3 class="cart-item-title">${item.title}</h3>
-          <span class="cart-item-price">${item.price}</span>
-          
-          <div class="quantity-controls">
-            <button class="qty-btn" onclick="changeQuantity(${index}, -1)">-</button>
-            <span class="qty-value">${item.quantity}</span>
-            <button class="qty-btn" onclick="changeQuantity(${index}, 1)">+</button>
-          </div>
-        </div>
-
-        <div class="cart-item-actions">
-          <span class="line-total">${formatCurrency(itemTotal)}</span>
-          <button class="remove-cart-btn" onclick="removeItem(${index})" title="Remove item">
-            <i class="fa-solid fa-trash-can"></i>
-          </button>
-        </div>
+    const row = document.createElement('div');
+    row.className = 'cart-item-card';
+    row.innerHTML = `
+      <img src="${item.img}" alt="${item.title}" class="cart-item-img" />
+      <div class="cart-item-details">
+        <h3 class="cart-item-title">${item.title}</h3>
+        <span class="cart-item-price">${item.currentPriceText}</span>
       </div>
+      <div class="qty-controls">
+        <button class="qty-btn" onclick="changeQty('${item.id}', -1)">-</button>
+        <span class="qty-value">${item.quantity}</span>
+        <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
+      </div>
+      <div class="cart-item-total">$${itemTotal.toFixed(2)}</div>
+      <button class="remove-cart-item" onclick="removeFromCart('${item.id}')" aria-label="Remove item">
+        <i class="fa-solid fa-trash"></i>
+      </button>
     `;
-  }).join('');
+    listContainer.appendChild(row);
+  });
 
-  // Calculate Order Totals
-  const tax = subtotal * 0.05; // 5% tax rate
+  // Recalculate totals
+  const tax = subtotal * 0.05;
   const total = subtotal + tax;
 
-  // Update Summary DOM
-  document.getElementById('summary-subtotal').textContent = formatCurrency(subtotal);
-  document.getElementById('summary-tax').textContent = formatCurrency(tax);
-  document.getElementById('summary-total').textContent = formatCurrency(total);
+  document.getElementById('summary-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+  document.getElementById('summary-tax').textContent = `$${tax.toFixed(2)}`;
+  document.getElementById('summary-total').textContent = `$${total.toFixed(2)}`;
 }
 
-// Function to increase/decrease quantity
-function changeQuantity(index, delta) {
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+function changeQty(id, delta) {
+  let cart = getCart();
+  const item = cart.find((i) => i.id === id);
 
-  if (cart[index]) {
-    cart[index].quantity += delta;
-
-    if (cart[index].quantity <= 0) {
-      cart.splice(index, 1);
-    }
-
-    localStorage.setItem('cart', JSON.stringify(cart));
-    renderCart();
-
-    if (typeof updateBadgeCounts === 'function') {
-      updateBadgeCounts();
+  if (item) {
+    item.quantity += delta;
+    if (item.quantity <= 0) {
+      cart = cart.filter((i) => i.id !== id);
     }
   }
-}
 
-// Function to remove an item entirely
-function removeItem(index) {
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
-  cart.splice(index, 1);
-  localStorage.setItem('cart', JSON.stringify(cart));
-
+  setCart(cart);
   renderCart();
-
-  if (typeof updateBadgeCounts === 'function') {
-    updateBadgeCounts();
-  }
+  updateBadges();
 }
-document.getElementById('checkoutBtn').addEventListener('click', function() {
-  window.location.href = 'http://127.0.0.1:5501/checkout.html'; // Replace with your checkout page path or URL
-});
-// Basic checkout placeholder action
-// function checkout() {
-//   alert('Thank you for your order! Order processing integration coming soon.');
-//   localStorage.removeItem('cart');
-//   renderCart();
 
-//   if (typeof updateBadgeCounts === 'function') {
-//     updateBadgeCounts();
-//   }
-// }
+function removeFromCart(id) {
+  let cart = getCart().filter((item) => item.id !== id);
+  setCart(cart);
+  renderCart();
+  updateBadges();
+}

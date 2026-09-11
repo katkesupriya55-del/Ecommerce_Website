@@ -5,67 +5,400 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Payment - Shop Easy</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="Ecommerce.css">
   <link rel="stylesheet" href="checkout.css">
+
   <style>
-    .payment-options { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
-    .payment-option { display: flex; align-items: center; gap: 15px; border: 2px solid #e2e8f0; padding: 15px; border-radius: 8px; cursor: pointer; transition: 0.2s; }
-    .payment-option:hover, .payment-option.active { border-color: #0f172a; background-color: #f8fafc; }
-    .payment-option input { width: 18px; height: 18px; cursor: pointer; }
-    .pay-now-btn { width: 100%; margin-top: 25px; padding: 14px; background: #22c55e; color: #fff; font-size: 1.1rem; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
-    .pay-now-btn:hover { background: #16a34a; }
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #eff6ff 100%);
+      min-height: 100vh;
+    }
+
+    .navbar {
+      background: #ffffff;
+      box-shadow: 0 2px 12px rgba(15, 23, 42, 0.05);
+    }
+
+    .payment-page-container {
+      max-width: 560px;
+      margin: 48px auto;
+      padding: 0 20px;
+    }
+
+    .payment-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 40px 36px;
+      box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.05);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: cardEnter 0.55s ease-out forwards;
+    }
+
+    @keyframes cardEnter {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .payment-header {
+      text-align: center;
+      margin-bottom: 8px;
+      opacity: 0;
+      animation: fadeUp 0.5s ease-out 0.15s forwards;
+    }
+
+    .payment-icon-badge {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, brown, rgb(238, 95, 95));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: gentlePulse 2.4s ease-in-out infinite;
+    }
+
+    @keyframes gentlePulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(15, 23, 42, 0.15); }
+      50% { box-shadow: 0 0 0 12px rgba(15, 23, 42, 0); }
+    }
+
+    .payment-icon-badge i {
+      color: #ffffff;
+      font-size: 1.5rem;
+    }
+
+    .payment-header h2 {
+      margin: 0 0 4px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .payment-header p {
+      margin: 0;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+
+    .order-summary-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 12px 18px;
+      margin: 20px 0 28px;
+      font-size: 0.88rem;
+      opacity: 0;
+      animation: fadeUp 0.5s ease-out 0.25s forwards;
+    }
+
+    .order-summary-strip .order-id {
+      color: #16a34a;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .order-summary-strip .order-amount {
+      color: #0f172a;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .payment-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 8px;
+      opacity: 0;
+      animation: fadeUp 0.5s ease-out 0.35s forwards;
+    }
+
+    .payment-option {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border: 2px solid #e2e8f0;
+      padding: 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .payment-option:hover {
+      border-color: #94a3b8;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
+    }
+
+    .payment-option.active {
+      border-color: #0f172a;
+      background-color: #f8fafc;
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.1);
+    }
+
+    .payment-option.active::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: #0f172a;
+      animation: slideInBar 0.25s ease-out;
+    }
+
+    @keyframes slideInBar {
+      from { transform: scaleY(0); }
+      to { transform: scaleY(1); }
+    }
+
+        .payment-option .option-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .payment-option:hover .option-icon {
+      transform: scale(1.05);
+    }
+
+    .payment-option .option-icon i {
+      font-size: 1.3rem;
+      color: #ffffff;
+    }
+
+    /* UPI — teal/green gradient (matches UPI brand color language) */
+    .option-icon.icon-upi {
+      background: linear-gradient(135deg, #14b8a6, #0d9488);
+      box-shadow: 0 4px 10px rgba(20, 184, 166, 0.3);
+    }
+
+    /* Card — blue/indigo gradient (classic card brand tone) */
+    .option-icon.icon-card {
+      background: linear-gradient(135deg, #6366f1, #4338ca);
+      box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+    }
+
+    /* COD — amber/orange gradient (cash association) */
+    .option-icon.icon-cod {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
+    }
+
+    .payment-option.active .icon-upi {
+      box-shadow: 0 6px 16px rgba(20, 184, 166, 0.45);
+    }
+
+    .payment-option.active .icon-card {
+      box-shadow: 0 6px 16px rgba(99, 102, 241, 0.45);
+    }
+
+    .payment-option.active .icon-cod {
+      box-shadow: 0 6px 16px rgba(245, 158, 11, 0.45);
+    }
+    .pay-now-btn {
+      width: 100%;
+      margin-top: 26px;
+      padding: 16px;
+      background: brown;
+      color: #fff;
+      font-size: 1rem;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+      opacity: 0;
+      animation: fadeUp 0.5s ease-out 0.45s forwards;
+    }
+
+    .pay-now-btn:hover:not(:disabled) {
+      background: #1e293b;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.25);
+    }
+
+    .pay-now-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.85;
+    }
+
+    .pay-now-btn .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.35);
+      border-top-color: #ffffff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+
+    .pay-now-btn.processing .spinner {
+      display: inline-block;
+    }
+
+    .pay-now-btn.processing .lock-icon {
+      display: none;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .secure-note {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 16px;
+      font-size: 0.78rem;
+      color: #94a3b8;
+      opacity: 0;
+      animation: fadeUp 0.5s ease-out 0.55s forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .Footer {
+      width: 100%;
+      box-sizing: border-box;
+      background-color: rgb(196, 192, 192);
+      padding: 40px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 30px;
+      border-radius: 20px;
+      margin-top: 40px;
+    }
+
+    .Footer .head h5 {
+      font-weight: 200;
+      line-height: 1.5;
+    }
+
+    .Footer .contain1 a {
+      text-decoration: none;
+      color: black;
+      display: block;
+      margin-top: 8px;
+    }
+
+    .Footer a:hover {
+      text-decoration: none;
+      color: rgb(10, 0, 0);
+    }
+
+    @media (max-width: 480px) {
+      .payment-card {
+        padding: 28px 20px;
+        border-radius: 16px;
+      }
+
+      .payment-header h2 {
+        font-size: 1.25rem;
+      }
+
+      .order-summary-strip {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <nav class="navbar">
-    <div class="first">
-      <a href="Ecommerce.html"><img src="./ShopEasy...png" alt="Shop Easy Logo"></a>
-    </div>
-  </nav>
+ 
 
-  <main class="page-container" style="max-width: 600px; margin: 40px auto; padding: 0 20px;">
-    <h2>Select Payment Method</h2>
-    <p>Complete your purchase securely</p>
+  <main class="payment-page-container">
+    <div class="payment-card">
 
-    <form id="payment-form" onsubmit="processPayment(event)">
+      <div class="payment-header">
+        <div class="payment-icon-badge">
+          <i class="fa-solid fa-lock"></i>
+        </div>
+        <h2>Select Payment Method</h2>
+        <p>Complete your purchase securely</p>
+      </div>
+
+      <div class="order-summary-strip">
+        <span class="order-id"><i class="fa-solid fa-receipt"></i> <span id="payment-order-id">Order #—</span></span>
+        <span class="order-amount" id="payment-amount">$0.00</span>
+      </div>
+
+          <form id="payment-form" onsubmit="processPayment(event)">
       <div class="payment-options">
-        
+
         <label class="payment-option active">
           <input type="radio" name="payment_method" value="UPI" checked>
-          <i class="fa-solid fa-qrcode fa-xl"></i>
+          <div class="option-icon icon-upi"><i class="fa-solid fa-qrcode"></i></div>
           <div>
             <strong>UPI / QR Code</strong>
-            <p style="margin:0; font-size: 0.85rem; color:#64748b;">Google Pay, PhonePe, Paytm</p>
+            <p>Google Pay, PhonePe, Paytm</p>
           </div>
         </label>
 
         <label class="payment-option">
           <input type="radio" name="payment_method" value="Card">
-          <i class="fa-solid fa-credit-card fa-xl"></i>
+          <div class="option-icon icon-card"><i class="fa-solid fa-credit-card"></i></div>
           <div>
             <strong>Credit / Debit Card</strong>
-            <p style="margin:0; font-size: 0.85rem; color:#64748b;">Visa, MasterCard, RuPay</p>
+            <p>Visa, MasterCard, RuPay</p>
           </div>
         </label>
 
         <label class="payment-option">
           <input type="radio" name="payment_method" value="COD">
-          <i class="fa-solid fa-money-bill-wave fa-xl"></i>
+          <div class="option-icon icon-cod"><i class="fa-solid fa-money-bill-wave"></i></div>
           <div>
             <strong>Cash on Delivery (COD)</strong>
-            <p style="margin:0; font-size: 0.85rem; color:#64748b;">Pay when item arrives</p>
+            <p>Pay when item arrives</p>
           </div>
         </label>
 
       </div>
 
       <button type="submit" class="pay-now-btn">
-        Complete Payment <i class="fa-solid fa-lock"></i>
+        <span class="spinner"></span>
+        <span class="btn-text">Complete Payment</span>
+        <i class="fa-solid fa-lock lock-icon"></i>
       </button>
-    </form>
-  </main>
 
+      <div class="secure-note">
+        <i class="fa-solid fa-shield-halved"></i> Secured with 256-bit encryption
+      </div>
+    </form>
+
+    </div>
+  </main>
   <script src="payment.js"></script>
 </body>
 </html>

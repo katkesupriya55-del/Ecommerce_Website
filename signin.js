@@ -30,6 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (matchedUser) {
       // Save current active session
       localStorage.setItem('currentUser', JSON.stringify(matchedUser));
+
+        localStorage.removeItem('shop_cart');
+        localStorage.removeItem('shop_wishlist');
       alert(`Welcome back, ${matchedUser.name}!`);
       window.location.href = 'http://127.0.0.1:5501/Ecommerce.html';
     } else {

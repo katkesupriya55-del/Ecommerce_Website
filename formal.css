@@ -37,7 +37,8 @@
   font-size: 30px;
   font-weight: 700;
   letter-spacing: 0.8px;
-  color: #0f172a;
+  color: #530101;
+  font-family: serif;
   
 }
 
@@ -55,9 +56,9 @@
   gap: 8px;
   padding: 8px 14px;
   border-radius: 30px;
-  background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
-  color: #334155;
+  background-color: #5c1a1a;
+  border: 1px solid #5c1a1a;
+  color: #f0dcb4;
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
@@ -65,9 +66,9 @@
 }
 
 .nav-pill:hover {
-  background-color: #0f172a;
-  border-color: #0f172a;
-  color: #ffffff;
+  background-color: #4a1414;
+  border-color: #4a1414;
+  color: #f0dcb4;
   transform: translateY(-1px);
 }
 
@@ -134,8 +135,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: #e2e8f0;
-  color: #0f172a;
+ background-color: rgb(182, 133, 133);
+  color:  #0f172a;
   font-size: 0.75rem;
   font-weight: 700;
   padding: 2px 7px;
@@ -143,22 +144,19 @@
   transition: background-color 0.2s, color 0.2s;
 }
 
-.count-badge.highlight {
- background-color: rgba(255, 255, 255, 0.2);
-   background-color: #e2e8f0;
 
-}
 
 /* Hover States for Badges */
 .nav-pill:hover .count-badge {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color:  rgba(238, 40, 40, 0.2);
   color: #ffffff;
 }
 
 .nav-pill:hover .count-badge.highlight {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color:  rgba(238, 40, 40, 0.2);
   color: #ffffff;
 } 
+
     
     .card-grid {
       display: grid;
@@ -302,8 +300,8 @@
     }
 
     .card-btn {
-      background-color: #111111;
-      color: #ffffff;
+      background-color:  #e8d5b7;
+      color: #5c1a1a;
       border: none;
       padding: 9px 16px;
       border-radius: 6px;
@@ -314,7 +312,8 @@
     }
 
     .card-btn:hover {
-      background-color: #333333;
+      background-color: #5c1a1a;
+  color: #ffffff;
     }
 .last{
       display: flex; 
@@ -325,7 +324,7 @@
     
   display: inline-block;
   padding: 12px 28px;
-  background-color: #0f172a;
+  background-color: #5c1a1a;
   color: #ffffff;
   text-decoration: none;
   border-radius: 5px;
@@ -334,19 +333,9 @@
 }
 
 .btn-a:hover {
-  background-color: #1e293b;
-}
-@media (max-width: 1024px) {
-  .card-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 cards per row on tablets */
-  }
+  background-color: #530101;
 }
 
-@media (max-width: 600px) {
-  .card-grid {
-    grid-template-columns: repeat(1, 1fr); /* 1 card per row on mobile */
-  }
-}
 
 
 
@@ -456,54 +445,226 @@
   color: #333;
 }
 
-/* Mobile Responsiveness */
+
+
+/* Hover Description Overlay */
+.card-description-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 16px;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(2px);
+  color: #ffffff;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+  z-index: 5;
+}
+
+.card:hover .card-description-overlay {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+
+
+
+/* ==========================================
+   8. FOOTER & COPYRIGHT
+   ========================================== */
+.Footer {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #e8d5b7;
+
+
+
+  padding: 40px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;
+  border-radius: 20px;
+}
+
+.Footer .head h5 {
+  font-weight: 200;
+  line-height: 1.5;
+}
+
+.Footer .contain1 a {
+  text-decoration: none;
+  color: black;
+  display: block;
+  margin-top: 8px;
+}
+
+.Footer .contain1 a:hover{
+  text-decoration: none;
+  color:brown;
+  display: block;
+  margin-top: 8px;
+  font-weight: bold;
+}
+
+
+/* ==========================================
+   Full Mobile Responsive Overhaul
+   ========================================== */
+
 @media (max-width: 768px) {
+  body {
+    padding: 0 0 24px 0;
+  }
+
+  /* Navbar: stack logo+actions on one row, title below */
   .navbar {
+    display: flex;
     flex-wrap: wrap;
-    padding: 10px 16px;
-    row-gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    gap: 10px;
   }
 
-  /* Scale down logo */
+  .brand-logo {
+    flex-shrink: 0;
+    order: 1;
+  }
+
   .brand-logo img {
-    height: 42px;
+    height: 34px;
+    width: auto;
   }
 
-  /* Move title to its own row below logo and actions */
-  .collection-title {
-    order: 3;
-    width: 100%;
-    text-align: center;
-    font-size: 1.125rem;
-    letter-spacing: 0.4px;
-  }
-
-  /* Compact button actions */
   .nav-actions {
-    gap: 8px;
+    order: 2;
+    flex-shrink: 0;
+    gap: 6px;
   }
 
   .nav-pill {
     padding: 6px 10px;
   }
 
-  /* Hide pill text on mobile (keep icons + badges) */
   .pill-label {
-    display: none;
+    display: none; /* icons + badge only, saves space */
+  }
+
+  /* Title drops to its own full-width row below logo/actions */
+  .collection-title {
+    order: 3;
+    width: 100%;
+    text-align: center;
+    font-size: 1.15rem;
+    letter-spacing: 0.3px;
+    margin-top: 4px;
+  }
+
+  /* Product grid */
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 16px 12px 0;
+  }
+
+  .card-img-wrapper {
+    padding-top: 120%;
+  }
+
+  .card-content {
+    padding: 10px;
+  }
+
+  .card-category {
+    font-size: 0.65rem;
+  }
+
+  .card-title {
+    font-size: 0.82rem;
+    margin-bottom: 8px;
+    line-height: 1.25;
+  }
+
+  .card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .card-price {
+    font-size: 0.92rem;
+  }
+
+  .card-btn {
+    width: 100%;
+    padding: 8px;
+    font-size: 0.78rem;
+  }
+
+  .card-description-overlay {
+    font-size: 0.68rem;
+    padding: 8px;
+    line-height: 1.25;
+  }
+
+  .wishlist-btn {
+    width: 30px;
+    height: 30px;
+  }
+
+  .wishlist-btn i {
+    font-size: 0.95rem;
+  }
+
+  .last {
+    padding: 0 16px;
+    margin-top: 20px;
+  }
+
+  .btn-a,
+  .back-btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 12px;
   }
 }
 
 @media (max-width: 480px) {
-  .brand-logo img {
-    height: 36px;
+  /* Single column on very small phones for readable text */
+  .card-grid {
+    grid-template-columns: 1fr;
+    padding: 14px 12px 0;
+  }
+
+  .card-img-wrapper {
+    padding-top: 90%;
   }
 
   .collection-title {
     font-size: 1rem;
   }
 
+  .brand-logo img {
+    height: 30px;
+  }
+
+  .card-title {
+    font-size: 0.9rem;
+  }
+
+  .card-price {
+    font-size: 1rem;
+  }
+
   .count-badge {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     padding: 1px 5px;
   }
 }

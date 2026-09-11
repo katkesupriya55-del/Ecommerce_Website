@@ -3,72 +3,56 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Wishlist - Shop Easy</title>
-
-  <!-- FontAwesome & Google Fonts -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap" rel="stylesheet">
-
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="Ecommerce.css" />
+  <title>My Wishlist - ShopEasy</title>
   <link rel="stylesheet" href="product.css" />
   <link rel="stylesheet" href="wishlist.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
 
-  <!-- Navigation Header -->
   <header class="navbar">
-    <a href="Ecommerce.html" class="brand-logo">
-      <img src="./ShopEasy...png" alt="ShopEasy Logo">
+    <a href="./product.html" class="brand-logo">
+      <img src="./Ecommercel_logo.png" alt="ShopEasy Logo" onerror="this.src='https://via.placeholder.com/140x40?text=ShopEasy'">
     </a>
-
     <div class="nav-actions">
       <a href="./wishlist.html" class="nav-pill active-pill" aria-label="Wishlist">
         <i class="fa-regular fa-heart"></i>
         <span class="pill-label">Wishlist</span>
-        <span class="count-badge" id="wishlist-count">0</span>
+        <span class="count-badge">0</span>
       </a>
-
       <a href="./cart.html" class="nav-pill" aria-label="Cart">
         <i class="fa-solid fa-bag-shopping"></i>
         <span class="pill-label">Cart</span>
-        <span class="count-badge highlight">6</span>
+        <span class="count-badge highlight">0</span>
       </a>
     </div>
   </header>
 
-  <!-- Wishlist Main Content -->
-  <main class="page-container">
+  <div class="page-container">
     <header class="catalog-header">
-      <h1>My Saved Wishlist</h1>
-      <p class="subtitle">Items you've heart-marked to buy later</p>
+      <h1 style="color: brown;">My Saved Wishlist</h1>
     </header>
 
-    <!-- Dynamic Wishlist Grid -->
-    <div id="wishlist-grid" class="product-grid"></div>
+    <div id="wishlist-grid" class="product-grid">
+      <!-- Dynamically generated items -->
+    </div>
 
-    <!-- Empty State View -->
-    <div id="empty-wishlist" class="empty-state">
-      <div class="empty-icon-box">
-        <i class="fa-regular fa-heart empty-icon"></i>
-      </div>
-      <h2>Your wishlist is empty</h2>
-      <p>Explore our catalog and save your favorite products!</p>
-      <a href="product.html" class="btn-explore">
-        <i class="fa-solid fa-arrow-left"></i> Back to Shop
+    <div id="empty-wishlist" class="empty-state" style="display: none;">
+      <i class="fa-regular fa-heart empty-icon"></i>
+      <h2>Your wishlist is currently empty</h2>
+      <p>Save items you love to review and purchase later.</p>
+      <a href="./product.html" class="browse-btn">Explore Products</a>
+    </div>
+
+    <div class="last">
+      <a href="./product.html" class="back-btn" >
+        <i class="fa-solid fa-arrow-left"></i> Back to Products
       </a>
     </div>
-  </main>
-
-  <div class="last">
-    <a href="Ecommerce.html" class="back-btn">
-      <i class="fa-solid fa-arrow-left"></i> Back
-    </a>
   </div>
 
-  <script src="Ecommerce.js"></script>
   <script src="wishlist.js"></script>
+
+  
 </body>
 </html>

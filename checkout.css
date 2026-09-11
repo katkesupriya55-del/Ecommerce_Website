@@ -31,7 +31,7 @@
 }
 
 .form-block h2 i {
-  color: #4f46e5;
+  color: brown;
 }
 
 .form-group {
@@ -150,7 +150,7 @@
   position: absolute;
   top: -6px;
   right: -6px;
-  background: #4f46e5;
+  background: brown;
   color: #ffffff;
   font-size: 0.72rem;
   font-weight: 800;
@@ -200,7 +200,7 @@
 }
 
 .promo-input-group:focus-within {
-  border-color: #4f46e5;
+  border-color: brown;
   background: #ffffff;
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
@@ -233,7 +233,7 @@
 }
 
 .btn-apply-promo:hover {
-  background: #4f46e5;
+  background: brown;
 }
 
 .promo-message {
@@ -267,8 +267,8 @@
 }
 
 .badge-free {
-  background: #dcfce7;
-  color: #15803d;
+  background: brown;
+  color: white;
   font-size: 0.75rem;
   font-weight: 800;
   padding: 3px 8px;
@@ -276,7 +276,7 @@
 }
 
 .discount-value {
-  color: #16a34a;
+  color: #ef4444;
   font-weight: 700;
 }
 
@@ -308,7 +308,7 @@
 .total-price {
   font-size: 1.4rem;
   font-weight: 900;
-  color: #4f46e5;
+  color: brown;
 }
 
 /* Trust Features */
@@ -331,7 +331,7 @@
 }
 
 .trust-item i {
-  color: #22c55e;
+  color: brown;
   font-size: 0.95rem;
 }
 
@@ -339,7 +339,7 @@
 .submit-order-btn {
   width: 100%;
   text-decoration: none;
-  background: #22c55e;
+  background: rgb(102, 19, 19);
   color: #ffffff;
   border: none;
   padding: 14px;
@@ -355,7 +355,7 @@
 }
 
 .submit-order-btn:hover {
-  background: #16a34a;
+  background: brown;
   transform: translateY(-2px);
 }
 
@@ -363,7 +363,7 @@
   display: block;
   text-align: center;
   margin-top: 14px;
-  color: #4f46e5;
+  color: brown;
   text-decoration: none;
   font-weight: 600;
   font-size: 0.9rem;
@@ -399,12 +399,6 @@ html, body {
 .navbar .first img {
   max-width: 130px;
   height: auto;
-}
-
-.nav-item {
-  display: flex;
-  align-items: center;
-  gap: 16px;
 }
 
 /* 3. Responsive Adjustments for Mobile Screens */

@@ -15,7 +15,7 @@ body {
 
 /* Hero Section */
 .about-hero {
-  background-color: rgb(192, 186, 192);
+  background-color: #e8d5b7;
   border-bottom: 2px solid #080808;
   padding: 60px 20px;
   text-align: center;
@@ -45,7 +45,7 @@ body {
 
 .hero-content h1 {
   font-size: clamp(1.85rem, 4vw + 1rem, 2.375rem); /* Smooth scaling: 30px to 38px */
-  color: rgb(22, 21, 21);
+  color: brown;
   margin: 0;
   line-height: 1.2;
 }
@@ -74,7 +74,7 @@ body {
 
 .badge {
   display: inline-block;
-  background-color: rgb(14, 13, 13);
+  background-color: brown;
   color: white;
   border: 1px solid #f3e8e9;
   font-weight: 600;
@@ -101,8 +101,8 @@ body {
 }
 
 .story-card {
-  background-color: rgb(224, 217, 219);
-  border: 2px solid #0e0102;
+  background-color: #e8d5b7;
+    border: 2px solid #0e0102;
   border-radius: 20px;
   padding: 32px;
 }
@@ -142,8 +142,8 @@ body {
 }
 
 .stat-card {
-  background: #ffffff;
-  border: 2px solid #0a0a0a;
+  background-color: #e8d5b7;
+    border: 2px solid #0a0a0a;
   border-radius: 16px;
   padding: 28px 16px;
   text-align: center;

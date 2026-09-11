@@ -90,7 +90,7 @@
 
 .submit-btn {
   width: 100%;
-  background-color: #0f172a;
+  background-color: brown;
   color: #ffffff;
   border: none;
   padding: 13px;
@@ -107,7 +107,7 @@
 }
 
 .submit-btn:hover {
-  background-color: #d62866;
+  background-color: darkred;
   transform: translateY(-2px);
 }
 
@@ -121,7 +121,7 @@
 }
 
 .auth-footer a {
-  color: #d62866;
+  color: brown;
   font-weight: 600;
   text-decoration: none;
 }
@@ -312,36 +312,7 @@
   display: inline-block;
 }
 
-/* Inline Count Badges */
-.count-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #e2e8f0;
-  color: #0f172a;
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 2px 7px;
-  border-radius: 12px;
-  transition: background-color 0.2s, color 0.2s;
-}
 
-.count-badge.highlight {
- background-color: rgba(255, 255, 255, 0.2);
-   background-color: #e2e8f0;
-
-}
-
-/* Hover States for Badges */
-.nav-pill:hover .count-badge {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
-}
-
-.nav-pill:hover .count-badge.highlight {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
-} 
 .last a{
   width: 100%;
   background-color: #0f172a;

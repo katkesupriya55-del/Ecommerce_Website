@@ -56,8 +56,8 @@ html, body {
 }
 
 .search-box:focus-within {
-  border-color: black;
-  box-shadow: 0 0 0 1px black;
+  border-color: #5c1a1a; /* was black */
+  box-shadow: 0 0 0 1px #5c1a1a; 
 }
 
 .search-input {
@@ -74,7 +74,7 @@ html, body {
 }
 
 .search-btn {
-  background-color: #0b1213;
+  background-color: #4a1414;
   border: none;
   color: #ffffff;
   padding: 0 20px;
@@ -87,7 +87,7 @@ html, body {
 }
 
 .search-btn:hover {
-  background-color: black;
+  background-color: #520101;
 }
 
 .nav-item {
@@ -105,9 +105,9 @@ html, body {
   position: absolute;
   top: -8px;
   right: -2px;
-  background-color: #d62866;
-  color: white;
-  font-size: 0.75rem;
+  background-color: #e8d5b7; 
+  color: black;
+  font-size: 0.60rem;
   font-weight: bold;
   padding: 2px 6px;
   border-radius: 50%;
@@ -123,9 +123,9 @@ html, body {
   display: flex;
   align-items: center;
   gap: 8px;
-  background-color: black;
+  background-color:  #520101;
   color: white;
-  border: 1px solid #cbd5e1;
+  border: 1px solid  #520101;
   padding: 8px 14px;
   border-radius: 8px;
   font-size: 0.88rem;
@@ -135,18 +135,18 @@ html, body {
 }
 
 .profile-btn:hover, .signin-nav-btn:hover {
-  background-color: #d62866;
+  background-color: #5c3232;
   color: #ffffff;
-  border-color: #d62866;
+  border-color: #4b2525;
 }
 
 .logout-btn {
   display: flex;
   align-items: center;
   gap: 8px;
-  background-color: #fee2e2;
-  color: #ef4444;
-  border: 1px solid #fca5a5;
+  background-color: #5c1a1a;
+  color: white;
+  border: 1px solid #881313;
   padding: 8px 14px;
   border-radius: 8px;
   font-size: 0.88rem;
@@ -160,7 +160,7 @@ html, body {
 }
 
 .logout-btn:hover {
-  background-color: black;
+  background-color: #742828;
   color: #ffffff;
   border-color: #141414;
   transform: translateY(-1px);
@@ -173,7 +173,7 @@ html, body {
 .sectionFirst {
   min-height: auto;
   padding: 40px 20px;
-  background: linear-gradient(20deg, rgb(75, 74, 74), rgb(185, 182, 182));
+  background: linear-gradient(20deg, #3d1010, #e8d5b7); 
 }
 
 .content {
@@ -210,7 +210,7 @@ html, body {
 .btn {
   display: inline-block;
   padding: 12px 28px;
-  background-color: #0f172a;
+  background-color:  #4a1414;
   color: #ffffff;
   text-decoration: none;
   border-radius: 5px;
@@ -219,7 +219,7 @@ html, body {
 }
 
 .btn:hover {
-  background-color: #1e293b;
+  background-color: #5c1a1a;
 }
 
 .hero-video-wrapper {
@@ -244,7 +244,7 @@ html, body {
 
 .video-card:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 25px 50px rgba(231, 25, 94, 0.25);
+  box-shadow:  0 25px 50px rgba(92, 26, 26, 0.25);
 }
 
 .shopping-video {
@@ -275,8 +275,13 @@ html, body {
 }
 
 .video-overlay-badge i {
-  color: rgb(231, 25, 94);
+  color:#5c1a1a;
 }
+
+
+
+
+
 
 /* ==========================================
    4. FEATURED PRODUCTS & PILL NAVIGATION
@@ -327,16 +332,16 @@ html, body {
 }
 
 .pill-btn:hover {
-  background-color: rgb(248, 82, 137);
-  border-color: rgb(247, 6, 86);
-  color: #ffffff;
+  background-color: #5c1a1a; /* was rgb(248, 82, 137) */
+  border-color: #4a1414; /* was rgb(247, 6, 86) */
+  color: #f0dcb4;
 }
 
 .pill-btn.active {
-  background-color: rgb(248, 82, 137);
-  color: #ffffff;
-  border-color: rgb(247, 6, 86);
-  box-shadow: 0 4px 14px rgba(255, 87, 34, 0.4);
+   background-color: #5c1a1a; /* was rgb(248, 82, 137) */
+  color: #f0dcb4; /* was #ffffff */
+  border-color: #4a1414; /* was rgb(247, 6, 86) */
+  box-shadow: 0 4px 14px rgba(92, 26, 26, 0.4);
 }
 
 /* ==========================================
@@ -365,7 +370,7 @@ html, body {
   padding: 20px 25px;   
   min-height: 220px;
   position: relative;
-  border: 1px solid #e2e8f0;
+  border: 1px solid brown;
   border-radius: 12px;
   overflow: hidden;
 }
@@ -434,12 +439,13 @@ html, body {
 .marquee-section {
   width: 100%;
   overflow: hidden;
-  background-color: lavenderblush;
+  background-color:  #fdf8f0;
   padding: 25px 0;
-  border-top: 2px solid #f3cbcf;
-  border-bottom: 2px solid #f3cbcf;
+  border-top: 2px solid #e8d5b7; /* was #f3cbcf */
+  border-bottom: 2px solid #e8d5b7; 
   position: relative;
 }
+
 
 .marquee-track {
   display: flex;
@@ -499,7 +505,7 @@ html, body {
 }
 
 .card1 {
-  background-color: rgb(235, 230, 231);
+  background-color:  #fdf8f0;;
   border-radius: 20px;
   display: flex;
   justify-content: space-evenly;
@@ -510,7 +516,7 @@ html, body {
   align-items: center; 
   gap: 20px;
   cursor: pointer;
-  border: 2px solid #f3cbcf;
+  border: 2px solid #e8d5b7; 
   transition: transform 0.35s ease, box-shadow 0.35s ease, background-color 0.35s ease, border-color 0.35s ease;
 }
 
@@ -525,9 +531,9 @@ html, body {
 
 .card1:hover {
   transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(15, 3, 3, 0.08);
-  background-color: #fff0f3;
-  border-color: #1a1919;
+  box-shadow: 0 12px 24px rgba(92, 26, 26, 0.15); /* was rgba(15, 3, 3, 0.08) — burgundy-tinted shadow */
+  background-color: #f5e9d3; /* was #fff0f3 — slightly deeper champagne on hover */
+  border-color: #5c1a1a;
 }
 
 .card1:nth-child(1):hover .icon i { animation: drive 0.6s ease-in-out infinite alternate; }
@@ -562,18 +568,16 @@ html, body {
 .Footer {
   width: 100%;
   box-sizing: border-box;
-  /* background-color: #ffffff; */
-  /* background: linear-gradient(20deg, rgb(109, 108, 108), rgb(185, 182, 182)); */
-  background-color: rgb(196, 192, 192);
-
-
+  /* background: linear-gradient(20deg,#e8d5b7, #2e1515);  */
+  background-color: #e8d5b7;
   padding: 40px 5%;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 30px;
-  border-radius: 20px;
+  
+  
 }
 
 .Footer .head h5 {
@@ -588,18 +592,19 @@ html, body {
   margin-top: 8px;
 }
 
-.Footer a:hover{
+.Footer .contain1 a:hover{
   text-decoration: none;
-  color: rgb(10, 0, 0);
+  color:brown;
   display: block;
   margin-top: 8px;
+  font-weight: bold;
 }
 
 #final {
   padding: 10px;
   height: auto;
   text-align: center;
-  background-color: lavenderblush;
+  background-color: #fdf8f0;
 }
 
 /* ==========================================
@@ -889,4 +894,56 @@ html, body {
   height: 200px;
   object-fit: cover;
   border-radius: 4px;
+}
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-overlay.hidden {
+  display: none;
+}
+
+.modal-box {
+  background: #ffffff;
+  padding: 24px 32px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  max-width: 320px;
+  width: 90%;
+}
+
+.modal-box h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.modal-box p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.modal-box button {
+  background-color: #6b3e6e;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.modal-box button:hover {
+  opacity: 0.9;
 }
